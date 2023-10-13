@@ -24,26 +24,13 @@ $action = $_SERVER["PHP_SELF"] . "?redirect=" . $_GET["redirect"];
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>login</title>
-</head>
-
-<body>
-  <!-- user input form -->
-  <form method="post" action=<?php echo $action ?>>
-    <label for="sid">Student Id: </label>
-    <input type="text" name="sid" required>
-    <br>
-    <label for="pw">Password: </label>
-    <input type="password" name="pw" required>
-    <br>
-    <button type="submit">submit</button>
-  </form>
-</body>
-
-</html>
+<!-- user input form -->
+<form method="post" action=<?php echo $action ?>>
+  <label for="sid">Student Id: </label>
+  <input type="text" name="sid" required>
+  <br>
+  <label for="pw">Password: </label>
+  <input type="password" name="pw" required>
+  <br>
+  <button type="submit">submit</button>
+</form>
