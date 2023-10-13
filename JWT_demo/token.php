@@ -1,8 +1,9 @@
 <?php
 class Token {
   const EXP = 30;
+  const KEY = "da key";
 
-  static function sign($payload, $key) {
+  static function sign($payload) {
     // header
     $header = ["alg" => "HS256", "type" => "JWT"];
     $header_encoded = base64_encode((json_encode($header)));
@@ -16,23 +17,23 @@ class Token {
     $payload_encoded = base64_encode(json_encode($cat_payload));
 
     //signature
-    $signature = hash_hmac("SHA256", $header_encoded . $payload_encoded, $key);
+    $signature = hash_hmac("SHA256", $header_encoded . $payload_encoded, self::KEY);
     $signature_encoded = base64_encode($signature);
 
     // return the token
     return $header_encoded . "." . $payload_encoded . "." . $signature_encoded;
   }
 
-  static function verify($token, $key) {
+  static function verify($token) {
     // seperate string
     $token_parts = explode(".", $token);
 
     // hmac stuff
-    $signature = base64_encode(hash_hmac("SHA256", $token_parts[0] . $token_parts[1], $key));
+    $signature = base64_encode(hash_hmac("SHA256", $token_parts[0] . $token_parts[1], self::KEY));
 
     // verify signature
     if ($signature != $token_parts[2]) {
-      echo "Invalid Token";
+      echo "Invalid Token<br>";
       return false;
     }
 
@@ -41,7 +42,7 @@ class Token {
 
     // check expired
     if ($payload["exp"] < time()) {
-      echo "Token Expired";
+      echo "Token Expired<br>";
       return false;
     }
 
