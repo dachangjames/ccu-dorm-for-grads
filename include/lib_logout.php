@@ -3,6 +3,6 @@
 setcookie("jwt", "", time(), "/");
 
 // redirect to home page
-header("location: index.php");
+header("location: /");
 exit;
 ?>

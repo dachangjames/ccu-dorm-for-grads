@@ -1,12 +1,13 @@
-<nav id="top">
-  <!-- logo -->
-  <a href="index.php">
+<header id="top">
+  <!-- header component -->
+  <a href="/">
+    <!-- logo -->
     <img id="top-title" src="pic/logo.jpg">
   </a>
   <!-- links navigation -->
   <ul id="top-menu">
     <li>
-      <a href="index.php">回首頁</a>
+      <a href="/">回首頁</a>
     </li>
     <li>
       <a href="https://www.ccu.edu.tw/" target="_blank">中正大學</a>
@@ -24,15 +25,15 @@
       <a href="https://www026185.ccu.edu.tw/dormrepair/" target="_blank">宿舍維修申請</a>
     </li>
     <li>
-      <a href="index.php?inner=map" target="_top">宿舍平面圖</a>
+      <a href="/?inner=map" target="_top">宿舍平面圖X</a>
     </li>
     <li>
       <a href="https://www026185.ccu.edu.tw/graddorm/doc/graddorm_guide.ppt">宿舍導覽</a>
     </li>
     <li>
-      <a href="index.php?inner=faq" target="_top">常見問答</a>
+      <a href="/?inner=faq" target="_top">常見問答X</a>
     </li>
   </ul>
   <img id="top-banner" src=<?php echo "pic/banner" . rand(1, 4) . ".jpg"; ?> >
   <div style="width: 100vw; height: 12px; background: lightgrey;"></div>
-</nav>
+</header>

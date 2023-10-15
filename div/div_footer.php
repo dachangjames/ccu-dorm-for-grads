@@ -1,3 +1,4 @@
+<!-- footer component -->
 <footer id="bottom">
   <p>Copyright &copy; 2023
     <a href="https://github.com/ccu-dorm-for-grads/ccu-dorm-for-grads">Source</a>

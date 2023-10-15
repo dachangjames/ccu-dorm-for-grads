@@ -18,8 +18,9 @@ class Token {
 
     // payload
     $payload_meta = [
-        "iat" => $_SERVER["REQUEST_TIME"],
-        "exp" => $_SERVER["REQUEST_TIME"] + $exp
+        "iat" => time(),
+        "exp" => time() + $exp,
+        "perm" => "adm"
       ];
     $cat_payload = $payload + $payload_meta;
     $payload_encoded = base64_encode(json_encode($cat_payload));
@@ -43,7 +44,6 @@ class Token {
 
     // verify signature
     if ($signature != $token_parts[2]) {
-      echo "Invalid Token<br>";
       return false;
     }
 
@@ -52,7 +52,6 @@ class Token {
 
     // check expired
     if ($payload["exp"] < time()) {
-      echo "Token Expired<br>";
       return false;
     }
 

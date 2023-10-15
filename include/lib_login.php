@@ -1,5 +1,5 @@
 <?php
-require 'class/Token.php';
+require "../class/Token.php";
 
 // submit action
 if (isset($_POST["sid"])) {
@@ -13,7 +13,7 @@ if (isset($_POST["sid"])) {
   Token::auth($payload);
 
   // redirect
-  header("location: index.php");
+  header("location: /");
   exit;
 }
 ?>

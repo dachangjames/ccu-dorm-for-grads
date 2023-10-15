@@ -1,9 +1,5 @@
-<?php
-  // maybe some logic here
-?>
-
-<!-- site configs -->
 <head>
+  <!-- site configs -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <Link href="css/style.css" rel="stylesheet" type="text/css">

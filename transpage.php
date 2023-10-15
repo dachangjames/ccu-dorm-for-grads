@@ -1,20 +1,35 @@
-<?php
-require "class/Token.php";
+<main id="main">
+  <?php
+  require "class/Token.php";
 
-// check if there's a key 
-if (isset($_COOKIE["jwt"])) {
-  $token = $_COOKIE["jwt"];
+  // check if there's a key 
+  if (isset($_COOKIE["jwt"])) {
+    $token = $_COOKIE["jwt"];
 
-  // verify the token
-  $valid = Token::verify($token);
-}
+    // verify the token
+    $valid = Token::verify($token);
+  }
+  
+    // check user status
+    if (isset($valid)) {
+      if ($valid) {
+        $_SESSION["account"] = $valid;
+        $_SESSION["perm"] = $valid["perm"];
+      } else {
+        // login failed
+        header("HTTP/1.1 401 Unauthorized");
+      }
+    }
 
-// conditional rendering according to user status
-if (!isset($valid)) {
-  echo "<h1>Please login first.</h1>";
-} else if (!$valid) {
-  echo "<h1>Login Failed</h1>";
-} else {
-  echo "<h1>Welcome {$valid["sid"]}!</h1>";
-}
-?>
+  // menu component
+  include "include/lib_transmenu.php";
+
+  // main content
+  echo "<section id=\"right\">";
+
+  // conditional rendering content
+  include "include/lib_transpage.php";
+
+  echo "</section>";
+  ?>
+</main>
