@@ -1,10 +1,10 @@
 <nav id="top">
   <!-- logo -->
   <a href="index.php">
-    <img id="top-logo" src="pic/logo.jpg">
+    <img id="top-title" src="pic/logo.jpg">
   </a>
   <!-- links navigation -->
-  <ul id="top-links">
+  <ul id="top-menu">
     <li>
       <a href="index.php">回首頁</a>
     </li>

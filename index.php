@@ -15,4 +15,6 @@ if (isset($_GET["inner"])) {
   // home page
   include "div/div_home.php";
 }
+
+include "div/div_footer.php";
 ?>
