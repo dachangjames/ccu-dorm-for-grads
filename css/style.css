@@ -6,39 +6,40 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Noto Sans TC", sans-serif;
+  transition: all 0.3s ease;
 }
 
 body {
-  padding: 1em;
   background: linear-gradient(white 30%, hsl(210, 60%, 70%));
 }
 
 #top {
   display: flex;
-  justify-content: space-between;
-  gap: 2em;
+  justify-content: space-around;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 #top-logo {
-  width: 450px;
+  width: 300px;
   max-width: 100vw;
-}
-
-@media (max-width: 1000px) {
-  #top {
-    justify-content: center;
-  }
+  margin: 8px;
 }
 
 #top-links {
   display: flex;
-  gap: 1em;
+  gap: 0.4em 3em;
   align-items: center;
   margin: auto;
   flex-wrap: wrap;
 }
 
-#top-links > * {
+#top-links > li {
   list-style: none;
+  font-size: 1.2em;
+  padding: 4px;
+}
+
+#top-banner {
+  max-width: 100%;
 }
