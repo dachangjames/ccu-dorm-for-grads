@@ -9,7 +9,7 @@ if (isset($_COOKIE["jwt"])) {
   $valid = Token::verify($token);
 }
 
-// conditional rendering
+// conditional rendering according to user status
 if (!isset($valid)) {
   echo "<h1>Please login first.</h1>";
 } else if (!$valid) {

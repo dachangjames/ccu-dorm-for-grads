@@ -1,7 +1,9 @@
 <nav id="top">
+  <!-- logo -->
   <a href="index.php">
     <img id="top-logo" src="pic/logo.jpg">
   </a>
+  <!-- links navigation -->
   <ul id="top-links">
     <li>
       <a href="#">link1</a>

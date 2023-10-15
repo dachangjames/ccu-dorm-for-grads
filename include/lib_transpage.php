@@ -1,4 +1,5 @@
 <?php
+// transpage logic
 switch ($_GET["inner"]) {
   case "login":
     include "page/login.html";

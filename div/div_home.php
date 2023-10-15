@@ -1,5 +1,5 @@
 <?php
-// conditional rendering
+// conditional rendering home page
 if (isset($valid) && $valid) {
   // redirect to index.php if logged out
   echo "<a href=\"./logout.php\">logout</a>";
