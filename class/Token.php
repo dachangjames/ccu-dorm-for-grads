@@ -2,24 +2,21 @@
 require "Dotenv.php";
 
 class Token {
-  const ACCESS_EXP = 300;
   const REFRESH_EXP = 60 * 60 * 24;
 
   public static function auth($payload) {
     $ACCESS_KEY = Dotenv::load("ACCESS_KEY");
-    $access_token = self::sign($payload, $ACCESS_KEY, self::ACCESS_EXP);
+    $access_token = self::sign($payload, $ACCESS_KEY);
     setcookie("jwt", $access_token, time() + self::REFRESH_EXP, "/", "", true, true);
   }
 
-  private static function sign($payload, $key, $exp) {
+  private static function sign($payload, $key) {
     // header
     $header = ["alg" => "HS256", "type" => "JWT"];
     $header_encoded = base64_encode((json_encode($header)));
 
     // payload
     $payload_meta = [
-        "iat" => time(),
-        "exp" => time() + $exp,
         "perm" => "dep"
       ];
     $cat_payload = $payload + $payload_meta;
@@ -50,10 +47,8 @@ class Token {
     // decode payload
     $payload = json_decode(base64_decode($token_parts[1]), true);
 
-    // check expired
-    if ($payload["exp"] < time()) {
-      return false;
-    }
+    // refresh cookie
+    setcookie("jwt", $token, time() + self::REFRESH_EXP);
 
     return $payload;
   }
