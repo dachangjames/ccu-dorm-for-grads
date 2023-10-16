@@ -54,7 +54,7 @@ if (isset($_GET["inner"])) {
   // entry pages
   if (isset($_SESSION["account"])) {
     // {perm}/{perm}_index.php
-    include $_SESSION["perm"] . "/" . $_SESSION["perm"] . "_index.php";
+    include $_SESSION["perm"] . "/" . $_SESSION["perm"] . "index.php";
   } else {
     include "div/div_home.php";
   }
