@@ -24,6 +24,12 @@ if (isset($_GET["inner"])) {
     case "login":
       include "page/login.html";
       break;
+    case "applyfor":
+      include "page/pg_applyfor.html";
+      break;
+    case "guide":
+      include "page/pg_guide.html";
+      break;
     default:
       // check if the user is logged in
       if (isset($_SESSION["account"])) {
