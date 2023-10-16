@@ -2,6 +2,8 @@
 // site configs
 include "div/div_head.php";
 
+include "include/lib_conn.php";
+
 // header component
 include "menu/menu_top.php";
 
