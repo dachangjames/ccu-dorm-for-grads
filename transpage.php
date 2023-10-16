@@ -17,7 +17,7 @@
         $_SESSION["perm"] = $valid["perm"];
       } else {
         // login failed
-        header("HTTP/1.1 401 Unauthorized");
+        header($_SERVER["SERVER_PROTOCOL"] . " 401 Unauthorized");
       }
     }
 

@@ -20,7 +20,7 @@ class Token {
     $payload_meta = [
         "iat" => time(),
         "exp" => time() + $exp,
-        "perm" => "adm"
+        "perm" => "stu"
       ];
     $cat_payload = $payload + $payload_meta;
     $payload_encoded = base64_encode(json_encode($cat_payload));

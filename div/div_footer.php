@@ -7,5 +7,5 @@
     . &nbsp;
     All right reserved.
   </p>
-  <p>建議使用非IE瀏覽器</p>
+  <p>建議使用 Chrome 57、Edge 16、Safari 10.1或Firefox 54以上瀏覽器</p>
 </footer>
