@@ -30,6 +30,9 @@ if (isset($_GET["inner"])) {
     case "guide":
       include "page/pg_guide.html";
       break;
+    case "member":
+      include "page/pg_member.html";
+      break;
     default:
       // check if the user is logged in
       if (isset($_SESSION["account"])) {
