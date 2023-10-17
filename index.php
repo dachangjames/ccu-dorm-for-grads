@@ -2,6 +2,7 @@
 // site configs
 include "div/div_head.php";
 
+// connect to db if not connected
 include "include/lib_conn.php";
 
 // header component

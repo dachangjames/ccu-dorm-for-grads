@@ -1,5 +1,6 @@
 <?php
-require "Dotenv.php";
+require_once "Dotenv.php";
+require_once "DB.php";
 
 class Token {
   const REFRESH_EXP = 60 * 60 * 24;
@@ -20,11 +21,15 @@ class Token {
     $header = ["alg" => "HS256", "type" => "JWT"];
     $header_encoded = base64_encode((json_encode($header)));
 
+    // fetch user permission
+    $user = DB::fetch_row("usr_acc", "acc", $payload["acc"]);
+    $perm = $user ? $user["perm"] : false;
+
     // payload
     $payload_meta = [
         "iat" => time(),
         "exp" => time() + self::REFRESH_EXP,
-        "perm" => "adm"
+        "perm" => $perm
       ];
     $cat_payload = $payload + $payload_meta;
     $payload_encoded = base64_encode(json_encode($cat_payload));
@@ -48,11 +53,22 @@ class Token {
 
     // verify signature
     if ($signature != $token_parts[2]) {
+      // Invalid token
       return false;
     }
 
     // decode payload
     $payload = json_decode(base64_decode($token_parts[1]), true);
+
+    $user = DB::fetch_row("usr_acc", "acc", $payload["acc"]);
+
+    if (!$user) {
+      // user does not exist
+      return false;
+    } else if ($user["pw"] !== $payload["pw"]) {
+      // wrong password
+      return false;
+    }
 
     // refresh cookie
     setcookie("jwt", $token, time() + self::REFRESH_EXP);

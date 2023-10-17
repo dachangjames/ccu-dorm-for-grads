@@ -1,11 +1,11 @@
 <?php
-require "../class/Token.php";
+require_once "../class/Token.php";
 
 // submit action
-if (isset($_POST["sid"])) {
+if (isset($_POST["acc"])) {
   // create payload from user input
   $payload = [
-    "sid" => $_POST["sid"],
+    "acc" => $_POST["acc"],
     "pw" => $_POST["pw"]
   ];
 

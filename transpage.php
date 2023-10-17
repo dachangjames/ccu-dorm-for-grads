@@ -1,6 +1,6 @@
 <main id="main">
   <?php
-  require "class/Token.php";
+  require_once "class/Token.php";
 
   // check if there's a key 
   if (isset($_COOKIE["jwt"])) {
@@ -10,14 +10,16 @@
     $valid = Token::verify($token);
   }
   
-    // check user status
+    // check if user has a cookie
     if (isset($valid)) {
+      // check if the cookie is valid
       if ($valid) {
         $_SESSION["account"] = $valid;
+        // echo $_SESSION["account"]["pw"];
         $_SESSION["perm"] = $valid["perm"];
       } else {
-        // login failed
-        header($_SERVER["SERVER_PROTOCOL"] . " 401 Unauthorized");
+        // invalid token
+        header($_SERVER["SERVER_PROTOCOL"] . " 401 Unautorized");
       }
     }
 
