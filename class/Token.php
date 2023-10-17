@@ -13,6 +13,10 @@ class Token {
     $payload["pw"] = $hashed_pw;
 
     $access_token = self::sign($payload, $ACCESS_KEY);
+    if (!$access_token) {
+      // wrong account or password
+      return;
+    }
     setcookie("jwt", $access_token, time() + self::REFRESH_EXP, "/", "", true, true);
   }
 
@@ -23,12 +27,21 @@ class Token {
 
     // fetch user permission
     $user = DB::fetch_row("usr_acc", "acc", $payload["acc"]);
-    $perm = $user ? $user["perm"] : false;
+    
+    // check if user exists
+    if (!$user) {
+      // empty token
+      return false;
+    } else if ($user["pw"] !== $payload["pw"]) {
+      // wrong password
+      return false;
+    } else {
+      $perm = $user["perm"];
+    }
 
     // payload
     $payload_meta = [
         "iat" => time(),
-        "exp" => time() + self::REFRESH_EXP,
         "perm" => $perm
       ];
     $cat_payload = $payload + $payload_meta;
@@ -56,20 +69,14 @@ class Token {
       // Invalid token
       return false;
     }
-
+    
     // decode payload
     $payload = json_decode(base64_decode($token_parts[1]), true);
 
-    $user = DB::fetch_row("usr_acc", "acc", $payload["acc"]);
-
-    if (!$user) {
-      // user does not exist
-      return false;
-    } else if ($user["pw"] !== $payload["pw"]) {
-      // wrong password
+    if (isset($_SESSION["account"]) && $payload["pw"] !== $_SESSION["account"]) {
       return false;
     }
-
+    
     // refresh cookie
     setcookie("jwt", $token, time() + self::REFRESH_EXP);
 
