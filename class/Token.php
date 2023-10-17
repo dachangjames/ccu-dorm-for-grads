@@ -6,6 +6,11 @@ class Token {
 
   public static function auth($payload) {
     $ACCESS_KEY = Dotenv::load("ACCESS_KEY");
+
+    // hash password
+    $hashed_pw = hash('SHA256', $payload["pw"]);
+    $payload["pw"] = $hashed_pw;
+
     $access_token = self::sign($payload, $ACCESS_KEY);
     setcookie("jwt", $access_token, time() + self::REFRESH_EXP, "/", "", true, true);
   }
@@ -17,6 +22,8 @@ class Token {
 
     // payload
     $payload_meta = [
+        "iat" => time(),
+        "exp" => time() + self::REFRESH_EXP,
         "perm" => "adm"
       ];
     $cat_payload = $payload + $payload_meta;
