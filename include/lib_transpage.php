@@ -23,7 +23,25 @@ if (isset($_GET["inner"])) {
   switch ($_GET["inner"]) {
     // switch through pages everyone can access
     case "login":
-      include "page/login.html";
+      include "page/pg_login.html";
+      break;
+    case "rule":
+      include "page/pg_rule.html";
+      break;
+    case "rule_a":
+      include "page/pg_rule_a.html";
+      break;
+    case "rule_b":
+      include "page/pg_rule_b.html";
+      break;
+    case "rule_c":
+      include "page/pg_rule_c.html";
+      break;
+    case "rule_d":
+      include "page/pg_rule_d.html";
+      break;
+    case "rule_e":
+      include "page/pg_rule_e.html";
       break;
     default:
       // check if the user is logged in
