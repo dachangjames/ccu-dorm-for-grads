@@ -15,7 +15,7 @@
 
 // EDIT WITH CATION!!!
 
-$perms = ["adm", "dep", "qry", "sto", "std", "sww", "swn", "swo", "swd", "swa", "swd", "swa", "spo", "stq", "stn"];
+$perms = ["adm", "dep", "qry", "sto", "std", "sww", "swn", "swo", "swd", "swa", "spo", "stq", "stn"];
 $inners = ["adm", "dep", "qry", "stu"];
 
 if (isset($_GET["inner"])) {
