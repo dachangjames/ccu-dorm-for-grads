@@ -5,6 +5,9 @@
     <img id="top-title" src="pic/logo.jpg">
   </a>
   <!-- links navigation -->
+  <input type="checkbox" id="nav-toggle" style="display: none;">
+  <label for="nav-toggle" class="bx bx-menu"></label>
+  <label for="nav-toggle" class="bx bx-x"></label>
   <ul id="top-menu">
     <li>
       <a href="/" class="link">回首頁</a>
@@ -34,6 +37,6 @@
       <a href="/?inner=faq" target="_top" class="link">常見問答X</a>
     </li>
   </ul>
-  <img id="top-banner" src=<?php echo "pic/banner" . rand(1, 4) . ".jpg"; ?> >
+  <img id="top-banner" src=<?php echo "pic/banner" . rand(1, 4) . ".jpg"; ?>>
   <div style="width: 100vw; height: 12px; background: lightgrey;"></div>
 </header>

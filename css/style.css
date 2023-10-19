@@ -1,18 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800&display=swap');
 
 /* global styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 body {
   background: linear-gradient(white 30%, hsl(210, 60%, 70%));
   background-repeat: no-repeat;
   background-attachment: fixed;
-  width: 100vw;
+  width: 100%;
   height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -20,15 +20,25 @@ body {
 
 #top {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
+  position: relative;
 }
 
 #top-title {
-  width: 300px;
-  max-width: 100vw;
-  margin: 8px;
+  /* width: 300px; */
+  max-height: 90px;
+  margin: 8px auto 8px 8px;
+}
+
+#top .bx {
+  font-size: 1.8em;
+  flex: 1;
+  position: absolute;
+  display: none;
+  top: 23px;
+  right: 23px;
 }
 
 #top-menu {
@@ -46,20 +56,11 @@ body {
   list-style: none;
   font-size: 1.2em;
   padding: 4px;
-
-}
-
-@media (width < 1250px) {
-  #top-menu {
-    font-size: 0.4em;
-  }
-  #top-menu > li > a::after {
-    height: 2px;
-  }
 }
 
 #top-banner {
   max-width: 100%;
+  margin: auto;
 }
 
 #main {
@@ -72,6 +73,60 @@ body {
   background: lightgray;
   margin-top: auto;
   display: grid;
-  width: 100vw;
+  width: 100%;
   justify-items: center;
+}
+
+@media (width < 1500px) {
+  #top > .bx-menu {
+    display: flex;
+  }
+
+  #top-menu {
+    position: fixed;
+    flex-direction: column;
+    top: 69px;
+    width: 100%;
+    background: white;
+    z-index: 1;
+    box-shadow: none;
+    border-radius: 0;
+    transform-origin: top;
+    transition: transform 0.25s ease-in-out;
+    transform: scaleY(0);
+  }
+
+  #top-menu > * {
+    transition: opacity 0.1s ease;
+    opacity: 0;
+  }
+
+  #top-menu .link::after {
+    width: 0;
+  }
+
+  #top-menu .link:hover {
+    transform: scale(1.02);
+  }
+
+  #nav-toggle:checked ~ .bx-menu {
+    display: none;
+  }
+  
+  #nav-toggle:checked ~ .bx-x {
+    display: flex;
+  }
+
+  #nav-toggle:checked ~ #top-menu {
+    transform: scaleY(1);
+  }
+
+  #nav-toggle:checked ~ #top-menu > * {
+    transition: opacity 0.1s ease 0.2s;
+    opacity: 1;
+  }
+
+  #top-banner {
+    width: 100vw;
+  }
 }
