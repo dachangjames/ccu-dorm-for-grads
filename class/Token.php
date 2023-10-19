@@ -17,7 +17,7 @@ class Token {
 
     // payload
     $payload_meta = [
-        "perm" => "dep"
+        "perm" => "adm"
       ];
     $cat_payload = $payload + $payload_meta;
     $payload_encoded = base64_encode(json_encode($cat_payload));
