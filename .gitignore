@@ -8,6 +8,5 @@ requirement_docs
 .env
 
 # custom fonts
-output/font/unifont/.dat
-output/font/unifont/.mtx.php
-output/font/unifont/.cw127*
+/output/font/unifont/*.mtx.php
+/output/font/unifont/*.cw*
