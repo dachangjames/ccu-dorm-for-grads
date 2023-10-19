@@ -27,7 +27,7 @@ class DB {
   /**
    * ### Connect to ccu-dorm-for-grads.database.windows.net:1433.CDFG_SQL
    * 
-   * @return true | PDOException
+   * @return true|PDOException
    * Return true if the connection is success, return PDOException if it failed.
    */
   private static function connect() {
@@ -65,10 +65,10 @@ class DB {
    * @param string $col
    * Specify which column to be checked on.
    * 
-   * @param string | int $key
+   * @param string|int $key
    * Specify the key of the row to fetch from.
    * 
-   * @return array | false
+   * @return array|false
    * Returns the row you fetched as an array, return false if the row does not exist
    */
   public static function fetch_row($table, $col, $key) {
