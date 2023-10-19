@@ -25,6 +25,9 @@ if (isset($_GET["inner"])) {
     case "login":
       include "page/login.html";
       break;
+    case "map":
+      include "page/pg_map.html";
+      break;      
     default:
       // check if the user is logged in
       if (isset($_SESSION["account"])) {
