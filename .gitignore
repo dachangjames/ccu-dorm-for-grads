@@ -10,3 +10,4 @@ requirement_docs
 # custom fonts
 output/font/unifont/*
 !output/font/unifont/.ttf
+!output/font/unifont/tfpdf.php
