@@ -6,3 +6,8 @@ requirement_docs
 
 #.env
 .env
+
+# custom fonts
+.dat
+.mtx.php
+.cw127*
