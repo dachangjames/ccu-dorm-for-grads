@@ -33,3 +33,21 @@
   flex-wrap: wrap;
   font-size: 1.2em;
 }
+
+@media (width < 1500px) {
+  #inner-nav {
+    display: none;
+  }
+
+  #inner-subtitle {
+    font-size: 1em;
+    position: sticky;
+    top: 1em;
+  }
+}
+
+@media (width < 500px) {
+  #inner {
+    padding: 0.5em;
+  }
+}
