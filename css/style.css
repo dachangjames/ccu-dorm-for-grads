@@ -22,8 +22,6 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  align-items: center;
-  position: relative;
 }
 
 #top-title {
@@ -39,6 +37,7 @@ body {
   display: none;
   top: 23px;
   right: 23px;
+  cursor: pointer;
 }
 
 #top-menu {
@@ -66,6 +65,7 @@ body {
 #main {
   display: flex;
   align-items: start;
+  position: relative;
 }
 
 #bottom {
@@ -88,7 +88,7 @@ body {
     top: 69px;
     width: 100%;
     background: white;
-    z-index: 1;
+    z-index: 2;
     box-shadow: none;
     border-radius: 0;
     transform-origin: top;
@@ -101,12 +101,9 @@ body {
     opacity: 0;
   }
 
-  #top-menu .link::after {
-    width: 0;
-  }
-
-  #top-menu .link:hover {
-    transform: scale(1.02);
+  #nav-toggle:checked ~ a {
+    position: sticky;
+    top: 0;
   }
 
   #nav-toggle:checked ~ .bx-menu {
@@ -128,5 +125,10 @@ body {
 
   #top-banner {
     width: 100vw;
+  }
+
+  #bottom {
+    font-size: 0.8em;
+    text-align: center;
   }
 }

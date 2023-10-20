@@ -39,4 +39,5 @@
   </ul>
   <img id="top-banner" src=<?php echo "pic/banner" . rand(1, 4) . ".jpg"; ?>>
   <div style="width: 100vw; height: 12px; background: lightgrey;"></div>
+  <script src="js/disableScroll.js"></script>
 </header>
