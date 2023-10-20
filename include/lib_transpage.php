@@ -18,6 +18,7 @@
 $perms = ["adm", "dep", "qry", "sto", "std", "sww", "swn", "swo", "swd", "swa", "swd", "swa", "spo", "stq", "stn"];
 $inners = ["adm", "dep", "qry", "stu"];
 
+
 if (isset($_GET["inner"])) {
   // everyone can access
   switch ($_GET["inner"]) {
@@ -26,8 +27,19 @@ if (isset($_GET["inner"])) {
       include "page/login.html";
       break;
     case "map":
-      include "page/pg_map.html";
-      break;      
+    case "map_a":
+    case "map_b":
+    case "map_c":
+    case "map_d":
+    case "map_e":
+      $page = "page/pg_" . $_GET["inner"] . ".html";
+      if (file_exists($page)) {
+          include $page;
+      } else {
+          // Handle 404 Not Found
+          include "page/404.html";
+      }
+      break;
     default:
       // check if the user is logged in
       if (isset($_SESSION["account"])) {
