@@ -66,12 +66,12 @@ body {
   display: flex;
   align-items: start;
   position: relative;
+  flex: 1;
 }
 
 #bottom {
   padding: 4px;
   background: lightgray;
-  margin-top: auto;
   display: grid;
   width: 100%;
   justify-items: center;

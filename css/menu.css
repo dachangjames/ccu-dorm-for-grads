@@ -47,7 +47,7 @@
 
 @media (width < 1500px) {
   #main {
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   #left {
