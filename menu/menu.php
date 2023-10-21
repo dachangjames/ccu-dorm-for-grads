@@ -12,7 +12,7 @@
     <a href="/?inner=rule">宿舍相關規範</a>
   </li>
   <li>
-    <a href="/?inner=map">平面配置查詢X</a>
+    <a href="/?inner=map">平面配置查詢</a>
   </li>
   <li>
     <a href="/?inner=guide">宿舍概況簡介</a>

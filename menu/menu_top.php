@@ -25,13 +25,13 @@
       <a href="https://www026185.ccu.edu.tw/dormrepair/" target="_blank">宿舍維修申請</a>
     </li>
     <li>
-      <a href="/?inner=map" target="_top">宿舍平面圖X</a>
+      <a href="/?inner=map" target="_top">宿舍平面圖</a>
     </li>
     <li>
       <a href="https://www026185.ccu.edu.tw/graddorm/doc/graddorm_guide.ppt">宿舍導覽</a>
     </li>
     <li>
-      <a href="/?inner=faq" target="_top">常見問答X</a>
+      <a href="/?inner=faq" target="_top">常見問答</a>
     </li>
   </ul>
   <img id="top-banner" src=<?php echo "pic/banner" . rand(1, 4) . ".jpg"; ?> >
