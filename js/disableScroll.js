@@ -1,7 +1,8 @@
 // get DOM element
-const menu = document.querySelector("#nav-toggle")
+const menu = document.querySelector('#nav-toggle')
+const body = document.body
 
-menu.addEventListener("change", () => {
+menu.addEventListener('change', () => {
   // disable scrolling if the menu is open
-  document.body.style.overflow = menu.checked ? "hidden" : "auto"
+  body.style.overflow = menu.checked ? 'hidden' : 'auto'
 })

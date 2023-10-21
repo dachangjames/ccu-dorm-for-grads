@@ -21,11 +21,11 @@ body {
 #top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 #top-title {
-  /* width: 300px; */
   max-height: 90px;
   margin: 8px auto 8px 8px;
 }
@@ -65,6 +65,7 @@ body {
 #main {
   display: flex;
   align-items: start;
+  justify-content: center;
   position: relative;
   flex: 1;
 }
