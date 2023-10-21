@@ -55,6 +55,12 @@ if (isset($_GET["inner"])) {
     case "applynote":
       include "page/pg_applynote.html";
       break;
+    case "faq":
+      include "page/pg_faq.html";
+      break;
+    case "listpay";
+      include "page/pg_listpay.html";
+      break;
     default:
       // check if the user is logged in
       if (isset($_SESSION["account"])) {
@@ -102,5 +108,3 @@ function is_allowed($perm, $inner) {
     return substr($inner, 0, 3) === "stu";
   }
 }
-
-?>
