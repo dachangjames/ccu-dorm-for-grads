@@ -27,18 +27,22 @@ if (isset($_GET["inner"])) {
       include "page/login.html";
       break;
     case "map":
+      include "page/pg_map.html";
+      break; 
     case "map_a":
+      include "page/pg_map_a.html";
+      break;
     case "map_b":
+      include "page/pg_map_b.html";
+      break;
     case "map_c":
+      include "page/pg_map_c.html";
+      break;
     case "map_d":
+      include "page/pg_map_d.html";
+      break;
     case "map_e":
-      $page = "page/pg_" . $_GET["inner"] . ".html";
-      if (file_exists($page)) {
-          include $page;
-      } else {
-          // Handle 404 Not Found
-          include "page/404.html";
-      }
+      include "page/pg_map_e.html";
       break;
     default:
       // check if the user is logged in
