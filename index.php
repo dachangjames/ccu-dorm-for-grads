@@ -1,4 +1,6 @@
 <?php
+require "class/DB.php";
+
 // site configs
 include "div/div_head.php";
 

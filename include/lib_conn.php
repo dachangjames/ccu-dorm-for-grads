@@ -10,4 +10,6 @@ try {
 }
 
 // phpinfo();
+
+// DB::disconnect();
 ?>

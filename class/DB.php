@@ -79,5 +79,47 @@ class DB {
 
     return $row;
   }
+
+  /**
+   * ### Add a set of data to the database.
+   * 
+   * @param string $table
+   * Specify the table to add data to.
+   * 
+   * @param array $cols
+   * Specify the columns to add data to.
+   * 
+   * @param array $values
+   * Specify the data values to add to the table.
+   * 
+   * @return bool
+   * If data added successfully, return true, if not, return false.
+   */
+  public static function add_row($table, $cols, $values) {
+    // check if the number of data matches the number of the columns
+    if (count($cols) !== count($values)) {
+      return false;
+    }
+
+    // prepare the data for the transaction
+    $new_values = [];
+    foreach ($values as $value) {
+      if (is_string($value)) {
+        array_push($new_values, "'" . $value . "'");
+      } else {
+        array_push($new_values, $value);
+      }
+    }
+    
+    // data formatting
+    $colstr = implode(", ", $cols);
+    $valuestr = implode(", ", $new_values);
+
+    self::get_connection();
+    $query = "INSERT INTO $table ($colstr) VALUES($valuestr);";
+    self::$db->query($query);
+
+    return true;
+  }
 }
 ?>
