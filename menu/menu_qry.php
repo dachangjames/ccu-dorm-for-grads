@@ -1,9 +1,9 @@
 <ul>
   <li>
-    <a href="/?inner=qryapply">住宿申請名單</a>
+    <a href="/?inner=qryapply">住宿申請名單X</a>
   </li>
   <li>
-    <a href="/?inner=qrydel">放棄申請名單</a>
+    <a href="/?inner=qrydel">放棄申請名單X</a>
   </li>
   <li>
     <a href="/">回首頁</a>
