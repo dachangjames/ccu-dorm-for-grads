@@ -1,10 +1,19 @@
-<!-- user input form -->
-<form method="post" action="include/lib_login.php">
-  <label for="sid">Student Id: </label>
-  <input type="text" name="sid" required>
-  <br>
-  <label for="pw">Password: </label>
-  <input type="password" name="pw" required>
-  <br>
-  <button type="submit">submit</button>
-</form>
+<div id="inner">
+  <p class="inner-nav">
+    <a href="/" class="link">回首頁</a>
+    /
+    <span>登入系統</span>
+  </p>
+  <div id="inner-subtitle">
+    <p>登入系統</p>
+    <p>Login</p>
+  </div>
+  <!-- user input form -->
+  <form method="post" action="include/lib_login.php" id="inner-content">
+    <label for="sid">Student Id: </label>
+    <input type="text" name="sid" required />
+    <label for="pw">Password: </label>
+    <input type="password" name="pw" required />
+    <button type="submit">submit</button>
+  </form>
+</div>
