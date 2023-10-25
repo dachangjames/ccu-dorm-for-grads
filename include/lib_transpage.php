@@ -20,7 +20,12 @@ const PERMS = ["adm", "dep", "qry", "sto", "std", "sww", "swn", "swo", "swd", "s
 if (isset($_GET["inner"])) {
   $filepath = "page/pg_" . $_GET["inner"] . ".html";
   if (file_exists($filepath)) {
-    include $filepath;
+    // transmap
+    if (substr($_GET["inner"], 0, 3) === "map") {
+      include "transmap.php";
+    } else {
+      include $filepath;
+    }
   } else {
     // check if the file exist
     $filepath = substr($_GET["inner"], 0, 3) . "/" . $_GET["inner"] . ".php";
