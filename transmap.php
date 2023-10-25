@@ -3,15 +3,15 @@ function map_nav($inner)
 {
   $inner = "map_" . $inner;
   if ($_GET["inner"] !== $inner) {
-    return "href=\"/?inner=$inner\"";
+    return "href=\"/?inner=$inner\" class=\"link\"";
   } else {
-    return "";
+    return "class=\"transmap-current\"";
   }
 }
 ?>
 
-<div id="inner">
-  <p id="inner-nav">
+<div class="inner">
+  <p class="inner-nav">
     <a href="/" class="link">回首頁</a>
     /
     <?php
@@ -23,13 +23,13 @@ function map_nav($inner)
     }
     ?>
   </p>
-  <div id="inner-subtitle">
+  <div class="inner-subtitle">
     <p>宿舍區平面相對配置圖</p>
     <p>The Graduate Dorm Map</p>
   </div>
-  <div id="inner-content">
+  <div class="inner-content transmap">
     <p>如欲查詢各棟細部寢室配置圖，可從選單列表點選之。</p>
-    <div>
+    <div class="transmap-nav">
       <?php
       echo "<a " . map_nav("a") . ">A棟宿舍配置</a>";
       echo "<a " . map_nav("b") . ">B棟宿舍配置</a>";
@@ -38,26 +38,54 @@ function map_nav($inner)
       echo "<a " . map_nav("e") . ">E棟宿舍配置</a>";
       ?>
     </div>
-    <div>
+    <div class="transmap-content">
       <?php
-
       switch (substr($_GET["inner"], 4)) {
         case "e":
-          echo "<img src=\"pic/map_e1.gif\">";
-          echo "<img src=\"pic/map_e23.gif\">";
-          echo "<img src=\"pic/map_e4.gif\">";
+          echo "<img src=\"pic/map_e01.gif\" class=\"inner-img\">";
+          echo "<img src=\"pic/map_e23.gif\" class=\"inner-img\">";
+          echo "<img src=\"pic/map_e4.gif\" class=\"inner-img\">";
           break;
         case false:
           // $_GET["inner"] === map
-          echo "<img src=\"pic/map_all.gif\">";
+          echo "<img src=\"pic/map_all.gif\" class=\"inner-img\">";
           break;
         default:
-          echo "<img src=\"pic/{$_GET["inner"]}12.gif\">";
-          echo "<img src=\"pic/{$_GET["inner"]}34.gif\">";
-          echo "<img src=\"pic/{$_GET["inner"]}5.gif\">";
+          echo "<img src=\"pic/{$_GET["inner"]}12.gif\" class=\"inner-img\">";
+          echo "<img src=\"pic/{$_GET["inner"]}34.gif\" class=\"inner-img\">";
+          echo "<img src=\"pic/{$_GET["inner"]}5.gif\" class=\"inner-img\">";
           break;
       }
       ?>
     </div>
   </div>
+
+  <style>
+    .transmap {
+      width: 100%;
+    }
+
+    .transmap-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .transmap-nav > a {
+      margin-inline: 1em;
+    }
+
+    .transmap-current {
+      color: var(--primary-dark);
+      font-weight: 600;
+      height: 1.6em;
+    }
+
+    .transmap-content {
+      display: grid;
+      gap: 1em;
+      width: 100%;
+    }
+  </style>
 </div>
