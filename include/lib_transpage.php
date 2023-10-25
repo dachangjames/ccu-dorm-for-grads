@@ -20,7 +20,13 @@ const PERMS = ["adm", "dep", "qry", "sto", "std", "sww", "swn", "swo", "swd", "s
 if (isset($_GET["inner"])) {
   $filepath = "page/pg_" . $_GET["inner"] . ".html";
   if (file_exists($filepath)) {
+    // normal static page
     include $filepath;
+  } else if (substr($_GET["inner"], 0, 3) === "map") {
+    // transmap
+    include "transmap.php";
+  } else if ($_GET["inner"] === "time") {
+    include "div/div_time.php";
   } else {
     // check if the file exist
     $filepath = substr($_GET["inner"], 0, 3) . "/" . $_GET["inner"] . ".php";
@@ -59,7 +65,8 @@ if (isset($_GET["inner"])) {
   }
 }
 
-function is_allowed($perm, $inner) {
+function is_allowed($perm, $inner)
+{
   if ($inner[0] !== "s") {
     return substr($inner, 0, 3) === $perm;
   } else {
