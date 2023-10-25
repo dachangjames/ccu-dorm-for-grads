@@ -9,17 +9,17 @@
     // verify the token
     $valid = Token::verify($token);
   }
-  
-    // check user status
-    if (isset($valid)) {
-      if ($valid) {
-        $_SESSION["account"] = $valid;
-        $_SESSION["perm"] = $valid["perm"];
-      } else {
-        // login failed
-        header($_SERVER["SERVER_PROTOCOL"] . " 401 Unauthorized");
-      }
+
+  // check user status
+  if (isset($valid)) {
+    if ($valid) {
+      $_SESSION["account"] = $valid;
+      $_SESSION["perm"] = $valid["perm"];
+    } else {
+      // login failed
+      header($_SERVER["SERVER_PROTOCOL"] . " 401 Unauthorized");
     }
+  }
 
   // menu component
   include "include/lib_transmenu.php";
@@ -32,4 +32,7 @@
 
   echo "</section>";
   ?>
+
+  <!-- Add styling script -->
+  <script src="js/showPwd.js"></script>
 </main>
