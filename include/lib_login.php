@@ -11,9 +11,9 @@ if (isset($_POST["acc"])) {
 
   // sign up a token and set the cookie
   Token::auth($payload);
-
-  // redirect
-  header("location: /");
-  exit;
 }
+
+// redirect
+header("location: /");
+exit;
 ?>
