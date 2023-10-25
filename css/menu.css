@@ -1,0 +1,45 @@
+#left {
+  min-width: 250px;
+  padding: 1em;
+  position: sticky;
+  top: 0;
+}
+
+#left > ul {
+  background: white;
+  box-shadow: 1px 2px 4px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  list-style: none;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+#left > ul > li > a {
+  font-size: 1.2em;
+}
+
+@media (width < 1200px) {
+  #main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #left {
+    position: unset;
+    width: 100%;
+  }
+
+  #left > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    place-items: center;
+    font-size: 0.7em;
+  }
+  
+  .link::after {
+    background: transparent;
+  }
+}
