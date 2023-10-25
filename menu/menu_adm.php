@@ -1,35 +1,35 @@
 <ul>
   <li>
-    <a href="/?inner=admset">期初設定X</a>
+    <a href="/?inner=admset" class="link">期初設定X</a>
   </li>
   <li>
-    <a href="/?inner=admset_dep">系所設定X</a>
+    <a href="/?inner=admset_dep" class="link">系所設定X</a>
   </li>
   <li>
-    <a href="/?inner=admperm">權限管理X</a>
+    <a href="/?inner=admperm" class="link">權限管理X</a>
   </li>
   <li>
-    <a href="/?inner=admapply">住宿申請X</a>
+    <a href="/?inner=admapply" class="link">住宿申請X</a>
   </li>
   <li>
-    <a href="/?inner=admappwait">遞補作業X</a>
+    <a href="/?inner=admappwait" class="link">遞補作業X</a>
   </li>
   <li>
-    <a href="/?inner=admarrange">排寢作業X</a>
+    <a href="/?inner=admarrange" class="link">排寢作業X</a>
   </li>
   <li>
-    <a href="/?inner=admqry">查詢功能X</a>
+    <a href="/?inner=admqry" class="link">查詢功能X</a>
   </li>
   <li>
-    <a href="/?inner=admdelchk">放棄確認X</a>
+    <a href="/?inner=admdelchk" class="link">放棄確認X</a>
   </li>
   <li>
-    <a href="/output/output_dormlist.php" target="_blank">住宿名冊X</a>
+    <a href="/output/output_dormlist.php" target="_blank" class="link">住宿名冊X</a>
   </li>
   <li>
-    <a href="/">回首頁</a>
+    <a href="/" class="link">回首頁</a>
   </li>
   <li>
-    <a href="/include/lib_logout.php">登出系統</a>
+    <a href="/include/lib_logout.php" class="link">登出系統</a>
   </li>
 </ul>
