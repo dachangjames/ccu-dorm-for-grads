@@ -61,11 +61,35 @@
 }
 
 .inner-list > * {
-  padding-left: 1em;
+  margin-left: 1em;
 }
 
 ul.inner-list {
   list-style-type: none;
+}
+
+.inner-table {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.inner-table td,
+.inner-table th {
+  padding: 0.4em 0;
+}
+
+.inner-table th {
+  background: var(--background-light);
+}
+
+.inner-table td {
+  background: white;
+}
+
+.inner-table tr:nth-child(2n + 1) > td {
+  background: var(--primary-light);
 }
 
 @media (width < 1500px) {

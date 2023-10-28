@@ -10,7 +10,7 @@
     <p>碩/博士生宿舍相關規範及注意事項</p>
     <p>Notice For The Dormitory</p>
   </div>
-  <ol class="inner-content rule">
+  <ol class="inner-content pg_rule">
     <li>
       <a href="?inner=rule_a" class="link">碩、博士班宿舍管理要點</a>
     </li>
@@ -29,7 +29,7 @@
   </ol>
 
   <style>
-    .rule {
+    .pg_rule {
       align-self: flex-start;
       list-style-position: inside;
       border-radius: 10px;
@@ -39,24 +39,25 @@
       font-size: 1.4em;
     }
 
-    .rule > * {
+    .pg_rule > * {
       align-self: flex-start;
       place-self: start;
       width: 100%;
       height: 100%;
       padding: 1em;
       background: var(--background-light);
+      outline: 1px solid gray;
     }
 
-    .rule > li:nth-child(1) {
+    .pg_rule > li:nth-child(1) {
       border-radius: 10px 10px 0 0;
     }
     
-    .rule > li:last-child {
+    .pg_rule > li:last-child {
       border-radius: 0 0 10px 10px;
     }
 
-    .rule > li:nth-child(2n) {
+    .pg_rule > li:nth-child(2n) {
       background: var(--primary-light);
     }
     </style>
