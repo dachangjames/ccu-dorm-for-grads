@@ -58,6 +58,7 @@
   gap: 1em;
   list-style-position: inside;
   align-items: start;
+  text-align: start;
 }
 
 .inner-list > * {
@@ -77,7 +78,7 @@ ul.inner-list {
 
 .inner-table td,
 .inner-table th {
-  padding: 0.4em 0;
+  padding: 0.4em 0.2em;
 }
 
 .inner-table th {

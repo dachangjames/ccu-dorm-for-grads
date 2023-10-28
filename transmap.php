@@ -70,6 +70,9 @@ function map_nav($inner)
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+      border: 2px solid gray;
+      padding: 1em 0;
+      border-radius: 5px;
     }
 
     .transmap-nav > a {
