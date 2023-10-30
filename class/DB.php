@@ -3,7 +3,33 @@ class DB {
   protected static $db = null;
 
   /**
-   * ### Check the connection to the database;
+   * ### Format the key value pairs into columns array and values array, both are array of strings.
+   * 
+   * @param array $arr
+   * Associative array of columns and their corresponding values.
+   * 
+   * @return array
+   * Returns an array contains an array of columns and an array of values.
+   */
+  private static function array2query($arr) {
+    $values = [];
+    $cols = [];
+    foreach ($arr as $key => $value) {
+      // add quotation to string values
+      if (is_string($value)) {
+        // may not work with "''" , try "[]" locally
+        $values[] = "'" . $value . "'";
+      } else {
+        $values[] = $value;
+      }
+      $cols[] = $key;
+    }
+
+    return [$cols, $values];
+  }
+
+  /**
+   * ### Check the connection to the database.
    * 
    * If there's no current connetion or the previous connetion has been timed out, reconnet.
    * 
@@ -81,45 +107,87 @@ class DB {
   }
 
   /**
-   * ### Add a set of data to the database.
+   * ### Create a row of data in the database.
    * 
    * @param string $table
    * Specify the table to add data to.
    * 
-   * @param array $cols
-   * Specify the columns to add data to.
-   * 
    * @param array $values
-   * Specify the data values to add to the table.
+   * Specify the key value pairs to add to the table.
    * 
    * @return bool
    * If data added successfully, return true, if not, return false.
    */
-  public static function add_row($table, $cols, $values) {
-    // check if the number of data matches the number of the columns
-    if (count($cols) !== count($values)) {
-      return false;
-    }
-
-    // prepare the data for the transaction
-    $new_values = [];
-    foreach ($values as $value) {
-      if (is_string($value)) {
-        array_push($new_values, "'" . $value . "'");
-      } else {
-        array_push($new_values, $value);
-      }
-    }
-    
+  public static function create_row($table, $values) {
     // data formatting
+    [$cols, $data] = self::array2query($values);
     $colstr = implode(", ", $cols);
-    $valuestr = implode(", ", $new_values);
+    $datastr = implode(", ", $data);
 
     self::get_connection();
-    $query = "INSERT INTO $table ($colstr) VALUES($valuestr);";
-    self::$db->query($query);
+    $query = "INSERT INTO $table ($colstr) VALUES($datastr);";
+    $stmt = self::$db->query($query);
 
-    return true;
+    return $stmt ? true : false;
+  }
+
+  /**
+   * ### Update the data of the specified row.
+   * 
+   * @param string $table
+   * Specify the table to update data from.
+   * 
+   * @param array $cond
+   * Specify which row to update.
+   * 
+   * @param array $values
+   * Specify the key value pairs to update.
+   * 
+   * @return bool
+   * If data updated successfully, return true, if not, return false.
+   */
+  public static function update_row($table, $cond, $values) {
+    // data formatting
+    [$cols, $data] = self::array2query($values);
+    [$condkey, $condvalue] = self::array2query($cond);
+
+    // pairing
+    $pairs = [];
+    foreach (array_combine($cols, $data) as $key => $value) {
+      $pairs[] = "$key = $value";
+    }
+
+    // concat paired strings
+    $update_str = implode(", ", $pairs);
+
+    self::get_connection();
+    $query = "UPDATE $table SET $update_str WHERE $condkey[0] = $condvalue[0];";
+    $stmt = self::$db->query($query);
+
+    return $stmt ? true : false;
+  }
+
+  /**
+   * ### Delete the data of the specified row.
+   * 
+   * @param string $table
+   * Specify the table to delete data from.
+   * 
+   * @param array $cond
+   * Specify which row to delete.
+   * 
+   * @return bool
+   * If data deleted successfully, return true, if not, return false.
+   */
+  public static function delete_row($table, $cond) {
+    // data formatting
+    [$condkey, $condvalue] = self::array2query($cond);
+
+    self::get_connection();
+    $query = "DELETE FROM $table WHERE $condkey[0] = $condvalue[0];";
+    $stmt = self::$db->query($query);
+
+    return $stmt ? true : false;
   }
 }
 ?>
