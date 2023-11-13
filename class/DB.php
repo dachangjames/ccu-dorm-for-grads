@@ -61,8 +61,6 @@ class DB {
     try {
       self::$db = new PDO("sqlsrv:server = tcp:ccu-dorm-for-grads.database.windows.net,1433; Database = CDFG_SQL", "dev", "{112-c-d-f-g}");
       self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-      $_SESSION["db_status"] = true;
     } catch (PDOException $e) {
       throw $e;
     }
@@ -77,8 +75,6 @@ class DB {
    * @return void
    */
   public static function disconnect() {
-    unset($_SESSION["db_status"]);
-
     self::$db = null;
   }
 
@@ -190,4 +186,3 @@ class DB {
     return $stmt ? true : false;
   }
 }
-?>

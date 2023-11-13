@@ -10,10 +10,15 @@ if (isset($_POST["acc"])) {
   ];
 
   // sign up a token and set the cookie
-  Token::auth($payload);
+  $access_token = Token::auth($payload);
 }
 
+
 // redirect
-header("location: /");
+if (isset($access_token)) {
+  // send back the access token if there's one
+  header("location: /?token=" . $access_token);
+} else {
+  header("location: /?inner=login&auth=401");
+}
 exit;
-?>
