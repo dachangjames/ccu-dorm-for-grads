@@ -9,18 +9,12 @@
     <p>Login</p>
   </div>
   <!-- user input form -->
-  <form method="post" action="include/lib_login.php" class="inner-content pg_login">
-    <div class="input-box">
-      <input type="text" name="sid" required />
-      <label for="sid">帳號</label>
-    </div>
-    <div class="input-box">
-      <input type="password" name="pw" required />
-      <label for="pw">密碼</label>
-      <i class='bx bx-show'></i>
-      <i class='bx bx-hide' ></i>
-    </div>
-    <button type="submit" class="action-button">登入</button>
+  <form method="post" action="include/lib_login.php" id="inner-content">
+    <label for="acc">Student Id: </label>
+    <input type="text" name="acc" required />
+    <label for="pw">Password: </label>
+    <input type="password" name="pw" required />
+    <button type="submit">submit</button>
   </form>
 
   <style>
