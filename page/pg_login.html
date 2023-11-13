@@ -1,19 +1,40 @@
-<div id="inner">
-  <p class="inner-nav">
+<div class="inner">
+  <p  class="inner-nav">
     <a href="/" class="link">回首頁</a>
     /
     <span>登入系統</span>
   </p>
-  <div id="inner-subtitle">
+  <div class="inner-subtitle">
     <p>登入系統</p>
     <p>Login</p>
   </div>
   <!-- user input form -->
-  <form method="post" action="include/lib_login.php" id="inner-content">
-    <label for="sid">Student Id: </label>
-    <input type="text" name="sid" required />
-    <label for="pw">Password: </label>
-    <input type="password" name="pw" required />
-    <button type="submit">submit</button>
+  <form method="post" action="include/lib_login.php" class="inner-content pg_login">
+    <div class="input-box">
+      <input type="text" name="sid" required />
+      <label for="sid">帳號</label>
+    </div>
+    <div class="input-box">
+      <input type="password" name="pw" required />
+      <label for="pw">密碼</label>
+      <i class='bx bx-show'></i>
+      <i class='bx bx-hide' ></i>
+    </div>
+    <button type="submit" class="action-button">登入</button>
   </form>
+
+  <style>
+    .pg_login {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pg_login input {
+      width: 100%;
+    }
+    
+    .pg_login > button {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+  </style>
 </div>

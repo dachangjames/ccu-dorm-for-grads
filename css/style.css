@@ -9,7 +9,13 @@
 }
 
 body {
-  background: linear-gradient(white 30%, hsl(210, 60%, 70%));
+  --background-light: hsl(210, 60%, 70%);
+  --primary-light: hsl(210, 60%, 85%);
+  --primary-dark: hsl(210, 70%, 40%);
+  --primary-dark-active: hsl(210, 70%, 45%);
+  --text-light: hsl(210, 30%, 80%);
+
+  background: linear-gradient(white 30%, var(--background-light));
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: 100%;
