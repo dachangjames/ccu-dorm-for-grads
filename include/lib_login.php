@@ -1,19 +1,24 @@
 <?php
-require "../class/Token.php";
+require_once "../class/Token.php";
 
 // submit action
-if (isset($_POST["sid"])) {
+if (isset($_POST["acc"])) {
   // create payload from user input
   $payload = [
-    "sid" => $_POST["sid"],
+    "acc" => $_POST["acc"],
     "pw" => $_POST["pw"]
   ];
 
   // sign up a token and set the cookie
-  Token::auth($payload);
-
-  // redirect
-  header("location: /");
-  exit;
+  $access_token = Token::auth($payload);
 }
-?>
+
+
+// redirect
+if (isset($access_token)) {
+  // send back the access token if there's one
+  header("location: /?token=" . $access_token);
+} else {
+  header("location: /?inner=login&auth=401");
+}
+exit;
