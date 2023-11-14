@@ -1,93 +1,173 @@
 <?php
-require "Dotenv.php";
+require_once "Dotenv.php";
+require_once "DB.php";
 
-class Token {
+class Token
+{
   /**
    * Token will be expired after 1 day
    */
-  const REFRESH_EXP = 60 * 60 * 24;
+  const ACCESS_EXP = 30;
+  const REFRESH_EXP = 45;
 
   /**
    * ### Authorize the user
-   * Sign a token to the user from the payload.
+   * Sign both refresh and access token to the user from the payload.
    * 
    * @param array $payload
    * Contains user account and password.
    * 
-   * @return void
+   * @return string|unset
+   * Return the access token if the payload is valid.
    */
-  public static function auth($payload) {
+  public static function auth($payload)
+  {
     $ACCESS_KEY = Dotenv::load("ACCESS_KEY");
-    $access_token = self::sign($payload, $ACCESS_KEY);
+    $REFRESH_KEY = Dotenv::load("REFRESH_KEY");
 
-    // create the cookie for auth checks
-    setcookie("jwt", $access_token, time() + self::REFRESH_EXP, "/", "", true, true);
+    // hash password
+    $hashed_pw = hash('SHA256', $payload["pw"]);
+    $payload["pw"] = $hashed_pw;
+
+    $tokens = self::sign($payload, $ACCESS_KEY, $REFRESH_KEY, self::ACCESS_EXP, self::REFRESH_EXP);
+    if (!$tokens) {
+      // wrong account or password
+      return;
+    }
+
+    [$access_token, $refresh_token] = $tokens;
+
+    // set the cookie
+    setcookie("jwt", $refresh_token, time() + self::REFRESH_EXP, "/", "", true, true);
+
+    return $access_token;
   }
 
   /**
    * ### Sign JWT token
    * 
    * @param array $payload
-   * Contains user account and password.
+   * Contains user data.
    * 
-   * @param string $key
+   * @param string $access_key
    * Access key for encoding.
    * 
-   * @return string
-   * Returns the signed JWT token.
+   * @param string $refresh_key
+   * Refresh key for encoding.
+   * 
+   * @param int $access_expired
+   * The expired time of access token.
+   * 
+   * @param int $refresh_expired
+   * The expired time of refresh token.
+   * 
+   * @return array|false
+   * Returns the signed JWT tokens, return false if the payload is invalid.
    */
-  private static function sign($payload, $key) {
+  private static function sign($payload, $access_key, $refresh_key, $access_expired, $refresh_expired)
+  {
     // header
     $header = ["alg" => "HS256", "type" => "JWT"];
     $header_encoded = base64_encode((json_encode($header)));
 
-    // payload
+    // fetch user permission
+    if (!isset($payload["perm"])) {
+      $user = DB::fetch_row("usr_acc", "acc", $payload["acc"]);
+      // check if user exists
+      if (!$user) {
+        // wrong account
+        return false;
+      } else if ($user["pw"] !== $payload["pw"]) {
+        // wrong password
+        return false;
+      } else {
+        $perm = $user["perm"];
+      }
+    } else {
+      $perm = $payload["perm"];
+    }
+
+    // additional payload data
     $payload_meta = [
-        "perm" => "adm"
+      "iat" => time(),
+      "perm" => $perm
     ];
-    $cat_payload = $payload + $payload_meta;
-    $payload_encoded = base64_encode(json_encode($cat_payload));
 
-    //signature
-    $signature = hash_hmac("SHA256", $header_encoded . $payload_encoded, $key);
-    $signature_encoded = base64_encode($signature);
+    // encode payload
+    $access_payload = $payload + $payload_meta + ["exp" => time() + $access_expired];
+    $access_payload_encoded = base64_encode(json_encode($access_payload));
 
-    // return the token
-    return $header_encoded . "." . $payload_encoded . "." . $signature_encoded;
+    $refresh_payload = $payload + $payload_meta + ["exp" => time() + $refresh_expired];
+    $refresh_payload_encoded = base64_encode(json_encode($refresh_payload));
+
+    // encode signature
+    $access_signature = hash_hmac("SHA256", $header_encoded . $access_payload_encoded, $access_key);
+    $access_signature_encoded = base64_encode($access_signature);
+
+    $refresh_signature = hash_hmac("SHA256", $header_encoded . $refresh_payload_encoded, $refresh_key);
+    $refresh_signature_encoded = base64_encode($refresh_signature);
+
+    // return both tokens
+    $access_token = $header_encoded . "." . $access_payload_encoded . "." . $access_signature_encoded;
+    $refresh_token = $header_encoded . "." . $refresh_payload_encoded . "." . $refresh_signature_encoded;
+
+    return [$access_token, $refresh_token];
   }
 
   /**
    * ### Verify JWT token
-   * Check if the user has a valid JWT token.
+   * Check if the user have valid JWT tokens.
    * 
-   * @param string $token
-   * The JWT token stored in the user's cookie.
+   * @param string $access_token
+   * The JWT token stored in the user's session.
    * 
-   * @return array|false
-   * Returns the payload if the token is valid, if not, return false.
+   * @param string $refresh_token
+   * The JWT token for refresh user cookie.
+   * 
+   * @return array
+   * Return the payload of the refresh token and the access token,
+   * if the verification failed, return false with the previous access token
    */
-  public static function verify($token) {
+  public static function verify($access_token, $refresh_token)
+  {
     $ACCESS_KEY = Dotenv::load("ACCESS_KEY");
+    $REFRESH_KEY = Dotenv::load("REFRESH_KEY");
 
-    // seperate string
-    $token_parts = explode(".", $token);
+    // seperate strings
+    $access_token_parts = explode(".", $access_token);
+    $refresh_token_parts = explode(".", $refresh_token);
 
     // hmac stuff
-    $signature = base64_encode(hash_hmac("SHA256", $token_parts[0] . $token_parts[1], $ACCESS_KEY));
+    $access_signature = base64_encode(hash_hmac("SHA256", $access_token_parts[0] . $access_token_parts[1], $ACCESS_KEY));
+    $refresh_signature = base64_encode(hash_hmac("SHA256", $refresh_token_parts[0] . $refresh_token_parts[1], $REFRESH_KEY));
 
-    // verify signature
-    if ($signature != $token_parts[2]) {
-      return false;
+    // verify signatures
+    if ($access_signature != $access_token_parts[2] || $refresh_signature != $refresh_token_parts[2]) {
+      // Invalid token
+      return [false, $access_token];
     }
 
-    // decode payload
-    $payload = json_decode(base64_decode($token_parts[1]), true);
+    // decode payloads
+    $access_payload = json_decode(base64_decode($access_token_parts[1]), true);
+    $refresh_payload = json_decode(base64_decode($refresh_token_parts[1]), true);
+
+    // check if access token is expired
+    if ($access_payload["exp"] > time()) {
+      return [$refresh_payload, $access_token];
+    } else if ($refresh_payload["exp"] > time()) {
+      // resign both tokens if refresh token is not expired
+      [$access_token, $refresh_token] = self::sign($refresh_payload, $ACCESS_KEY, $REFRESH_KEY, self::ACCESS_EXP, self::REFRESH_EXP);
+    } else {
+      // both tokens are expired
+      return [false, $access_token];
+    }
 
     // refresh cookie
-    setcookie("jwt", $token, time() + self::REFRESH_EXP);
+    setcookie("jwt", $refresh_token, time() + self::REFRESH_EXP, "/", "", true, true);
 
-    return $payload;
+    // refresh payload
+    $refresh_payload["exp"] = time() + self::REFRESH_EXP;
+
+    return [$refresh_payload, $access_token];
   }
 }
-
-

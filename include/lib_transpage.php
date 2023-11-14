@@ -15,7 +15,7 @@
 
 // EDIT WITH CATION!!!
 
-const PERMS = ["adm", "dep", "qry", "sto", "std", "sww", "swn", "swo", "swd", "swa", "swd", "swa", "spo", "stq", "stn"];
+const PERMS = ["adm", "dep", "qry", "sto", "std", "sww", "swn", "swo", "swd", "swa", "spo", "stq", "stn"];
 
 if (isset($_GET["inner"])) {
   $filepath = "page/pg_" . $_GET["inner"] . ".html";
