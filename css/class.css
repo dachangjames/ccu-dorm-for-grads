@@ -21,3 +21,75 @@
   transform: scaleX(1);
 }
 
+.input-box {
+  width: 100%;
+  position: relative;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.input-box > label {
+  position: absolute;
+  top: 12px;
+  left: 13px;
+  color: var(--text-light);
+  transition: all 0.2s ease-in;
+  pointer-events: none;
+  user-select: none;
+}
+
+.input-box > input[type=text],
+.input-box > input[type=password] {
+  outline: none;
+  font-size: 20px;
+  height: 54px;
+  border: 2px solid var(--primary-dark);
+  border-radius: 5px;
+  background: white;
+  text-indent: 16px;
+}
+
+.input-box > input:is(:focus, :valid) + label {
+  top: -9px;
+  font-size: 12px;
+  background: var(--primary-dark);
+  color: white;
+  padding: 0 8px 2px;
+  border-radius: 10px;
+}
+
+.input-box > .bx {
+  font-size: 24px;
+  color: white;
+  width: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 54px;
+  background: var(--primary-dark);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-box > .bx-hide {
+  display: none;
+}
+
+.action-button {
+  border-radius: 5px;
+  border: none;
+  background: var(--primary-dark);
+  color: white;
+  font-size: 1em;
+  padding-block: 12px;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background: var(--primary-dark-active);
+}
+
+.action-button:active {
+  background: var(--primary-dark);
+}

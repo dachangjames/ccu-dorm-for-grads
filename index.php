@@ -1,6 +1,22 @@
 <?php
+// start the user session
+session_start();
+
+function clear_session() {
+  if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time(), $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+  }
+  session_destroy();
+}
+
+require "class/DB.php";
+
 // site configs
 include "div/div_head.php";
+
+// connect to db if not connected
+include "include/lib_conn.php";
 
 // header component
 include "menu/menu_top.php";
