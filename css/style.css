@@ -9,11 +9,14 @@
 }
 
 body {
-  --background-light: hsl(210, 60%, 70%);
-  --primary-light: hsl(210, 60%, 85%);
-  --primary-dark: hsl(210, 70%, 40%);
-  --primary-dark-active: hsl(210, 70%, 45%);
-  --text-light: hsl(210, 30%, 80%);
+  --text-light: #F2F5F8;
+  --background-light: #BAD7F3;
+  --primary-light: #A8CCF0;
+  --primary-light-active: #85B8EA;
+  --primary-dark-active: #2273BF;
+  --primary-dark: #1F68AD;
+
+  /* https://coolors.co/1f68ad-2273bf-85b8ea-a8ccf0-bad7f3-f2f5f8 */
 
   background: linear-gradient(white 30%, var(--background-light));
   background-repeat: no-repeat;
@@ -91,7 +94,7 @@ body {
   #top-menu {
     position: fixed;
     flex-direction: column;
-    top: 69px;
+    top: 64px;
     width: 100%;
     background: white;
     z-index: 2;

@@ -3,7 +3,7 @@
     <a href="/?inner=applyfor" class="link">宿舍申請流程</a>
   </li>
   <li>
-    <a href="/?inner=time" class="link">相關申請期限X</a>
+    <a href="/?inner=time" class="link">相關申請期限</a>
   </li>
   <li>
     <a href="/?inner=applynote" class="link">申請注意事項</a>
