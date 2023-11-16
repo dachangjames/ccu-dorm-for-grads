@@ -16,7 +16,7 @@ unset($value);
   <p class="inner-nav">
     <a href="/" class="link">回首頁</a>
     /
-    <span>碩博士生宿舍相關申請期限</span>
+    <span>碩、博士生宿舍相關申請期限</span>
   </p>
   <div class="inner-subtitle">
     <p>碩/博士生宿舍相關申請期限</p>
