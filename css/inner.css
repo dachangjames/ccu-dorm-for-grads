@@ -82,11 +82,11 @@ ul.inner-list {
 }
 
 .inner-table th {
-  background: var(--background-light);
+  background: var(--primary-light-active);
 }
 
 .inner-table td {
-  background: white;
+  background: var(--background-light);
 }
 
 .inner-table tr:nth-child(2n + 1) > td {
