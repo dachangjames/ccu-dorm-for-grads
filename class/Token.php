@@ -87,7 +87,6 @@ class Token
       $perm = $payload["perm"];
     }
 
-    var_dump($payload);
     // additional payload data
     $payload_meta = [
       "iat" => time(),
