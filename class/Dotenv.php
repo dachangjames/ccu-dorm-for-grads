@@ -11,7 +11,12 @@
      */
     public static function load($key) {
       $env = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . "\.env");
-      return $env[$key];
+
+      if (strlen($env[$key]) > 0) {
+        return $env[$key];
+      } else {
+        throw new ErrorException("Failed to load environment variable '$key'");
+      }
     }
   }
 ?>
