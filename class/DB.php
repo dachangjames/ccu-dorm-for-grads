@@ -103,6 +103,33 @@ class DB {
   }
 
   /**
+   * ### Fetch all matching rows from the database by key.
+   * 
+   * @param string $table
+   * Specify the table to fetch from.
+   * 
+   * @param string $col
+   * Specify which column to be checked on.
+   * 
+   * @param string|int $key
+   * Specify the key of the row to fetch from.
+   * 
+   * @param int $limit
+   * Specify the number of rows you disire, defalt to 1000.
+   * 
+   * @return array|false
+   * Returns the rows you fetched as an array, return false if the row does not exist
+   */
+  public static function fetchALl_rows($table, $col, $key, $limit = 1000) {
+    self::get_connection();
+    $query = "SELECT TOP $limit * FROM $table WHERE $col = '$key'";
+    $stmt = self::$db->query($query);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $rows;
+  }
+  
+  /**
    * ### Create a row of data in the database.
    * 
    * @param string $table
