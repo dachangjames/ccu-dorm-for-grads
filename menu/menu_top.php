@@ -25,13 +25,13 @@
       <a href="https://www.dorm.ccu.edu.tw/" target="_blank" class="link">宿舍網路</a>
     </li>
     <li>
-      <a href="https://www026185.ccu.edu.tw/dormrepair/" target="_blank" class="link">宿舍維修申請</a>
+      <a href="https://www026186.ccu.edu.tw/dormrepair/" target="_blank" class="link">宿舍維修申請</a>
     </li>
     <li>
       <a href="/?inner=map" target="_top" class="link">宿舍平面圖</a>
     </li>
     <li>
-      <a href="https://www026185.ccu.edu.tw/graddorm/doc/graddorm_guide.ppt" class="link">宿舍導覽</a>
+      <a href="https://www026186.ccu.edu.tw/graddorm/doc/graddorm_guide.ppt" class="link">宿舍導覽</a>
     </li>
     <li>
       <a href="/?inner=faq" target="_top" class="link">常見問答</a>
