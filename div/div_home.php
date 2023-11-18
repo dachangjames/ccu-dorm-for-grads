@@ -36,7 +36,7 @@ function sort_top($anns) {
       $sorted = sort_top($anns);
       foreach ($sorted as $ann) {
         echo "<tr>";
-        echo "<td style=\"text-align: start; padding-left: 8px;\"><a href=\"/?inner=news?no=" . $ann["anno_no"] . "\">";
+        echo "<td style=\"text-align: start; padding-left: 8px;\"><a href=\"/?inner=news&no=" . $ann["anno_no"] . "\">";
         echo $ann["is_top"] == "y" ? "[置頂] " : "";
         echo $ann["subject"] . "</td>";
         echo "<td>" . substr($ann["anno_date"], 0, 16) . "</a></td>";
@@ -44,6 +44,7 @@ function sort_top($anns) {
       }
       ?>
     </table>
+    <a href="/?inner=news" class="link" >更多公告訊息</a>
   </div>
 
   <style>
