@@ -1,5 +1,10 @@
 <div class="inner">
-    <div class="inner-subtitle">系所申請名額設定</div>
+    <div class="inner-subtitle">
+        <p>系所申請名額設定</p>
+        <p class="inner-nav">
+            <a href="/?inner=admset_dep" class="link">回上頁</a>
+        </p>
+    </div>
     <!-- 文學院 -->
     <form action="/?inner=admset_dep_unit" method="post" id="literature" style="display:none">
         <table class="inner-table">
@@ -23,10 +28,10 @@
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit">
+                    <input type="submit" name="Quota" value="Submit" class="action-button">
                 </td>
                 <td align="center" colspan="2">
-                    <input type="reset" value="Clear">
+                    <input type="reset" value="Clear" class="action-button">
                 </td>
             </tr>
         </table>
@@ -54,10 +59,10 @@
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit">
+                    <input type="submit" name="Quota" value="Submit" class="action-button">
                 </td>
                 <td align="center" colspan="2">
-                    <input type="reset" value="Clear">
+                    <input type="reset" value="Clear" class="action-button">
                 </td>
             </tr>
         </table>
@@ -85,10 +90,10 @@
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit">
+                    <input type="submit" name="Quota" value="Submit" class="action-button">
                 </td>
                 <td align="center" colspan="2">
-                    <input type="reset" value="Clear">
+                    <input type="reset" value="Clear" class="action-button">
                 </td>
             </tr>
         </table>
@@ -116,10 +121,10 @@
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit">
+                    <input type="submit" name="Quota" value="Submit" class="action-button">
                 </td>
                 <td align="center" colspan="2">
-                    <input type="reset" value="Clear">
+                    <input type="reset" value="Clear" class="action-button">
                 </td>
             </tr>
         </table>
@@ -147,17 +152,14 @@
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit">
+                    <input type="submit" name="Quota" value="Submit" class="action-button">
                 </td>
                 <td align="center" colspan="2">
-                    <input type="reset" value="Clear">
+                    <input type="reset" value="Clear" class="action-button">
                 </td>
             </tr>
         </table>
     </form>
-    <div class="inner-subtitle" style="justify-content:center">
-        <a href="/?inner=admset_dep">[回上頁]</a>
-    </div>
 </div>
 
 <?php
@@ -222,5 +224,6 @@
         // foreach($row as $key => $value){
         //     echo "{$key} : {$value}<br>";
         // }
+        echo "<script>location.replace('/?inner=admset_dep');</script>";
     }
 ?>
