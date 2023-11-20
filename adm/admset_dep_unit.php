@@ -161,6 +161,7 @@
 </div>
 
 <?php
+    $upd_Table = "sl8gdm_dep";
     if(isset($_POST["dep"])){
         switch($_POST["dep"]){
             case 1:
@@ -179,5 +180,47 @@
                 echo "<script>document.getElementById('law').style.display='block';</script>";
                 break;
         }
+        $_SESSION["dep"]=$_POST["dep"];
+    }
+
+    // $row=DB::fetch_row("sl8gdm_dep", "unit_parent", $_SESSION["dep"]*1000);
+    // foreach($row as $key => $value){
+    //     echo "{$key} : {$value}<br>";
+    // }
+
+    if(isset($_POST["Quota"])){
+        switch($_SESSION["dep"]){
+            case 1:
+                $num_m=$_POST["Liter_m_count"];
+                $num_f=$_POST["Liter_f_count"];
+                $upd_Row = array("unit_parent"=>"1000");
+                break;
+            case 2:
+                $num_m=$_POST["Math_m_count"];
+                $num_f=$_POST["Math_f_count"];
+                $upd_Row = array("unit_parent"=>"2000");
+                break;
+            case 3:
+                $num_m=$_POST["CS_m_count"];
+                $num_f=$_POST["CS_f_count"];
+                $upd_Row = array("unit_parent"=>"3000");
+                break;
+            case 4:
+                $num_m=$_POST["Psyco_m_count"];
+                $num_f=$_POST["Psyco_f_count"];
+                $upd_Row = array("unit_parent"=>"4000");
+                break;
+            case 5:
+                $num_m=$_POST["Law_m_count"];
+                $num_f=$_POST["Law_f_count"];
+                $upd_Row = array("unit_parent"=>"5000");
+                break;
+        }
+        DB::update_row($upd_Table, $upd_Row, ["a_num_m"=>$num_m]);
+        DB::update_row($upd_Table, $upd_Row, ["a_num_f"=>$num_f]);
+        // $row=DB::fetch_row("sl8gdm_dep", "unit_parent", $_SESSION["dep"]*1000);
+        // foreach($row as $key => $value){
+        //     echo "{$key} : {$value}<br>";
+        // }
     }
 ?>
