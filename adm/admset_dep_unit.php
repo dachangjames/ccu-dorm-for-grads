@@ -193,7 +193,7 @@
     if(isset($_POST["Quota"])){
         switch($_SESSION["dep"]){
             case 1:
-                $num_m=$_POST["Liter_m_count"];
+                $num_m=$_POST["Liter_m_count"];    //FILTER_SANITIZE_NUMBER_INT
                 $num_f=$_POST["Liter_f_count"];
                 $upd_Row = array("unit_parent"=>"1000");
                 break;
