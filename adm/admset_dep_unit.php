@@ -14,7 +14,7 @@
 		5 => "法律研究所"
 	];
 	foreach($deps as $dNum => $dName){
-        echo "<form action='/?inner=admset_dep_unit' method='post' style='display:none'>";
+        echo "<form action='/?inner=admset_dep_unit' method='post' id=$dNum style='display:none'>";
         echo "	<table class='inner-table'>";
         echo "		<tr style='font-weight: bold;'>";
         echo "			<td align='center'>#</td>";
@@ -49,17 +49,9 @@
 
 <?php
 	$upd_Table = "sl8gdm_dep";
-	$deps = [
-		1 => 'literature',
-		2 => 'science',
-		3 => 'engineering',
-		4 => 'socialscience',
-		5 => 'law'
-	];
 	if(isset($_POST["dep"])){
 		$idx = $_POST["dep"];
-		$getId = $deps[$idx];
-		echo "<script>document.getElementById('$getId').style.display='block';</script>";
+		echo "<script>document.getElementById('$idx').style.display='block';</script>";
 		$_SESSION["dep"] = $_POST["dep"];
 	}
 
