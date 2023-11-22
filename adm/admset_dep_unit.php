@@ -4,163 +4,48 @@
         <p class="inner-nav">
             <a href="/?inner=admset_dep" class="link">回上頁</a>
         </p>
-    </div>
-    <!-- 文學院 -->
-    <form action="/?inner=admset_dep_unit" method="post" id="literature" style="display:none">
-        <table class="inner-table">
-            <tr style="font-weight: bold;">
-                <td align="center">#</td>
-                <td align="center">系所單位</td>
-                <td align="center">男生名額</td>
-                <td align="center">女生名額</td>
-            </tr>
-            <tr>
-                <td align="center">1</td>
-                <td align="center">1000 中國文學研究所</td>
-                <td align="center">
-                    <input type="number" name="Liter_m_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-                <td align="center">
-                    <input type="number" name="Liter_f_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit" class="action-button">
-                </td>
-                <td align="center" colspan="2">
-                    <input type="reset" value="Clear" class="action-button">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <!-- 理學院 -->
-    <form action="/?inner=admset_dep_unit" method="post" id="science" style="display:none">
-        <table class="inner-table">
-            <tr style="font-weight: bold;">
-                <td align="center">#</td>
-                <td align="center">系所單位</td>
-                <td align="center">男生名額</td>
-                <td align="center">女生名額</td>
-            </tr>
-            <tr>
-                <td align="center">2</td>
-                <td align="center">2000 數學研究所</td>
-                <td align="center">
-                    <input type="number" name="Math_m_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-                <td align="center">
-                    <input type="number" name="Math_f_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit" class="action-button">
-                </td>
-                <td align="center" colspan="2">
-                    <input type="reset" value="Clear" class="action-button">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <!-- 工學院 -->
-    <form action="/?inner=admset_dep_unit" method="post" id="engineering" style="display:none">
-        <table class="inner-table">
-            <tr style="font-weight: bold;">
-                <td align="center">#</td>
-                <td align="center">系所單位</td>
-                <td align="center">男生名額</td>
-                <td align="center">女生名額</td>
-            </tr>
-            <tr>
-                <td align="center">3</td>
-                <td align="center">3000 資訊工程研究所</td>
-                <td align="center">
-                    <input type="number" name="CS_m_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-                <td align="center">
-                    <input type="number" name="CS_f_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit" class="action-button">
-                </td>
-                <td align="center" colspan="2">
-                    <input type="reset" value="Clear" class="action-button">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <!-- 社科院 -->
-    <form action="/?inner=admset_dep_unit" method="post" id="socialscience" style="display:none">
-        <table class="inner-table">
-            <tr style="font-weight: bold;">
-                <td align="center">#</td>
-                <td align="center">系所單位</td>
-                <td align="center">男生名額</td>
-                <td align="center">女生名額</td>
-            </tr>
-            <tr>
-                <td align="center">4</td>
-                <td align="center">4000 心理研究所</td>
-                <td align="center">
-                    <input type="number" name="Psyco_m_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-                <td align="center">
-                    <input type="number" name="Psyco_f_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit" class="action-button">
-                </td>
-                <td align="center" colspan="2">
-                    <input type="reset" value="Clear" class="action-button">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <!-- 法學院 -->
-    <form action="/?inner=admset_dep_unit" method="post" id="law" style="display:none">
-        <table class="inner-table">
-            <tr style="font-weight: bold;">
-                <td align="center">#</td>
-                <td align="center">系所單位</td>
-                <td align="center">男生名額</td>
-                <td align="center">女生名額</td>
-            </tr>
-            <tr>
-                <td align="center">5</td>
-                <td align="center">5000 中國文學研究所</td>
-                <td align="center">
-                    <input type="number" name="Law_m_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-                <td align="center">
-                    <input type="number" name="Law_f_count" placeholder="0" required>
-                    <label>人</label>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2">
-                    <input type="submit" name="Quota" value="Submit" class="action-button">
-                </td>
-                <td align="center" colspan="2">
-                    <input type="reset" value="Clear" class="action-button">
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+	</div>
+	<?php 
+	$deps = [
+		1 => "中國文學研究所",
+		2 => "數學研究所",
+		3 => "資訊工程研究所",
+		4 => "心理研究所",
+		5 => "法律研究所"
+	];
+	foreach($deps as $dNum => $dName){
+        echo "<form action='/?inner=admset_dep_unit' method='post' style='display:none'>";
+        echo "<table class='inner-table'>";
+        echo "<tr style='font-weight: bold;'>";
+        echo "<td align='center'>#</td>";
+        echo "<td align='center'>系所單位</td>";
+        echo "<td align='center'>男生名額</td>";
+        echo "<td align='center'>女生名額</td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td align='center'>$dNum</td>";
+        echo "<td align='center'>$dNum $dName</td>";
+        echo "<td align='center'>";
+        echo "<input type='number' name='num_m_$dNum' placeholder='0' required>";
+        echo "<label>人</label>";
+        echo "</td>";
+        echo "<td align='center'>";
+        echo "<input type='number' name='num_f_$dNum' placeholder='0' required>";
+        echo "<label>人</label>";
+        echo "</td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td align='center' colspan='2'>";
+        echo "<input type='submit' name='Quota_$dNum' value='Submit' class='action-button'>";
+        echo "</td>";
+        echo "<td align='center' colspan='2'>";
+        echo "<input type='reset' value='Clear' class='action-button'>";
+        echo "</td>";
+        echo "</tr>";
+        echo "</table>";
+        echo "</form>";
+	}
+?>
 
 <?php
     $upd_Table = "sl8gdm_dep";
