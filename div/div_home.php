@@ -35,30 +35,36 @@ require_once "include/lib_sort_news.php";
       }
       ?>
     </table>
-    <a href="/?inner=news" class="link" >更多公告訊息</a>
+    <a href="/?inner=news" class="link">更多公告訊息</a>
   </div>
 
   <style>
     .div_home>.top {
       margin-top: 1em;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1em;
     }
 
-    .div_home>.top>.left {
+    .div_home .left {
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .div_home>.top>.left>.action-button {
+    .div_home .left>.action-button {
       width: 80%;
       text-decoration: none;
       text-align: center;
     }
+
+    .div_home .right {
+      max-width: 100%;
+    }
+
     .div_home>.news {
       table-layout: auto;
+      max-width: 100%;
     }
   </style>
 </div>

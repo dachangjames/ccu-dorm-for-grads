@@ -3,12 +3,13 @@ const next = document.getElementById('nextPage')
 const first = document.getElementById('firstPage')
 const last = document.getElementById('lastPage')
 const nav = document.getElementById('pageNav')
+const select = document.getElementById('newsPerPage_select')
 const news = document.querySelectorAll('.news')
 
 const newsCount = news.length
 let currentPage = 1
-let newsPerPage = 2
-const pageCount = Math.ceil(newsCount / newsPerPage)
+let newsPerPage = 1
+let pageCount = Math.ceil(newsCount / newsPerPage)
 
 const resetPage = (currentPage) => {
   nav.textContent = `第 ${currentPage} 頁 / 共 ${pageCount} 頁`
@@ -50,4 +51,11 @@ last.addEventListener('click', () => {
     currentPage = pageCount
     resetPage(currentPage)
   }
+})
+
+select.addEventListener('change', () => {
+  newsPerPage = select.value
+  pageCount = Math.ceil(newsCount / newsPerPage)
+  currentPage = 1
+  resetPage(1)
 })

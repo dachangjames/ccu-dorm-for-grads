@@ -22,16 +22,26 @@ if (isset($_GET["no"])) {
     <p>重要公告</p>
     <p>Important News For The Dormitory</p>
   </div>
+  <!-- all news -->
   <div class="inner-content div_news <?php echo $showAll ? "" : "hide"; ?>">
-    <!-- all news -->
-    <div class="news_nav">
-      <i class="bx bx-chevrons-left" id="firstPage"></i>
-      <i class="bx bx-chevron-left" id="prevPage"></i>
-      <span id="pageNav"></span>
-      <i class="bx bx-chevron-right" id="nextPage"></i>
-      <i class="bx bx-chevrons-right" id="lastPage"></i>
+    <div class="news_head">
+      <div class="news_count_select">
+        <span>每頁</span>
+        <select id="newsPerPage_select">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <span>筆</span>
+      </div>
+      <div class="news_nav">
+        <i class="bx bx-chevrons-left" id="firstPage"></i>
+        <i class="bx bx-chevron-left" id="prevPage"></i>
+        <span id="pageNav"></span>
+        <i class="bx bx-chevron-right" id="nextPage"></i>
+        <i class="bx bx-chevrons-right" id="lastPage"></i>
+      </div>
     </div>
-
     <table border="1" class="inner-table">
       <tr>
         <th>公告主題</th>
@@ -68,7 +78,26 @@ if (isset($_GET["no"])) {
       width: 100%;
     }
 
-    .div_news>.news_nav {
+    .div_news>.news_head {
+      display: flex;
+      width: 100%;
+      gap: 1em;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .div_news .news_count_select {
+      display: flex;
+      gap: 0.4em;
+      margin-right: auto;
+    }
+
+    .div_news .news_count_select>select {
+      width: 69px;
+    }
+
+    .div_news .news_nav {
       display: flex;
       align-items: center;
       gap: 1em;
@@ -78,9 +107,7 @@ if (isset($_GET["no"])) {
       font-size: 1.2em;
       width: 1em;
       height: 1em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      place-items: center;
       background-color: var(--primary-light);
       border-radius: 50%;
       cursor: pointer;
@@ -91,7 +118,12 @@ if (isset($_GET["no"])) {
     }
 
     .div_news>.inner-table {
-      table-layout: auto;
+      grid-column: 1 / -1;
+    }
+
+    .div_news>.inner-table tr {
+      display: grid;
+      grid-template-columns: 1fr 30%;
     }
 
     .div_news.hide {
