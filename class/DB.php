@@ -118,7 +118,7 @@ class DB {
    * Specify the number of rows you disire, defalt to 1000.
    * 
    * @return array|false
-   * Returns the rows you fetched as an array, return false if the row does not exist
+   * Returns the rows you fetched as an array, return false if the row does not exist.
    */
   public static function fetchALl_rows($table, $col, $key, $limit = 1000) {
     self::get_connection();
@@ -129,6 +129,16 @@ class DB {
     return $rows;
   }
 
+
+  /**
+   * ### Fetch all data from the table.
+   * 
+   * @param string $table
+   * Specify the table to fetch from.
+   * 
+   * @return array|false
+   * Returns the table you fetched as an array, return false if the table doesn't exist.
+   */
   public static function fetch_table($table) {
     self::get_connection();
     $query = "SELECT * FROM $table";
