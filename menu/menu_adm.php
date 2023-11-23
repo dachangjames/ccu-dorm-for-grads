@@ -3,7 +3,7 @@
     <a href="/?inner=admset" class="link">期初設定X</a>
   </li>
   <li>
-    <a href="/?inner=admset_dep" class="link">系所設定X</a>
+    <a href="/?inner=admset_dep" class="link">系所設定</a>
   </li>
   <li>
     <a href="/?inner=admperm" class="link">權限管理X</a>
