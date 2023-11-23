@@ -128,6 +128,15 @@ class DB {
 
     return $rows;
   }
+
+  public static function fetch_table($table) {
+    self::get_connection();
+    $query = "SELECT * FROM $table";
+    $stmt = self::$db->query($query);
+    $table = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $table;
+  }
   
   /**
    * ### Create a row of data in the database.
