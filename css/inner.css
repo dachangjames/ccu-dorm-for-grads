@@ -116,6 +116,10 @@ ul.inner-list {
   .inner-list {
     align-items: start;
   }
+
+  .inner-table {
+    font-size: 0.8em;
+  }
 }
 
 @media (width < 500px) {

@@ -1,16 +1,7 @@
 <?php
 $anns = DB::fetchAll_rows("sl8gdm_announce", "is_anno", "y", 6);
 
-function sort_top($anns) {
-  $top = [];
-  foreach ($anns as $ann) {
-    if ($ann["is_top"] === "y") {
-      $top[] = $ann;
-    }
-  }
-
-  return $top + $anns;
-}
+require_once "include/lib_sort_news.php";
 ?>
 
 <div class="inner">
@@ -33,10 +24,10 @@ function sort_top($anns) {
         <th>公告日期</th>
       </tr>
       <?php
-      $sorted = sort_top($anns);
+      $sorted = sort_anns($anns);
       foreach ($sorted as $ann) {
         echo "<tr>";
-        echo "<td style=\"text-align: start; padding-left: 8px;\"><a href=\"/?inner=news&no=" . $ann["anno_no"] . "\">";
+        echo "<td style='text-align: start; padding-left: 8px;'><a href='/?inner=news&no=" . $ann["anno_no"] . "'>";
         echo $ann["is_top"] == "y" ? "[置頂] " : "";
         echo $ann["subject"] . "</td>";
         echo "<td>" . substr($ann["anno_date"], 0, 16) . "</a></td>";

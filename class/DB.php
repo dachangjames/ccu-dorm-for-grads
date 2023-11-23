@@ -120,7 +120,7 @@ class DB {
    * @return array|false
    * Returns the rows you fetched as an array, return false if the row does not exist
    */
-  public static function fetchALl_rows($table, $col, $key, $limit = 1000) {
+  public static function fetchAll_rows($table, $col, $key, $limit = 1000) {
     self::get_connection();
     $query = "SELECT TOP $limit * FROM $table WHERE $col = '$key'";
     $stmt = self::$db->query($query);
