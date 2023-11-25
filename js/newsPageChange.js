@@ -8,7 +8,7 @@ const news = document.querySelectorAll('.news')
 
 const newsCount = news.length
 let currentPage = 1
-let newsPerPage = 1
+let newsPerPage = 10
 let pageCount = Math.ceil(newsCount / newsPerPage)
 
 const resetPage = (currentPage) => {

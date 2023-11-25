@@ -28,9 +28,9 @@ if (isset($_GET["no"])) {
       <div class="news_count_select">
         <span>每頁</span>
         <select id="newsPerPage_select">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
         </select>
         <span>筆</span>
       </div>

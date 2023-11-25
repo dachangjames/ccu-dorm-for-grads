@@ -23,12 +23,15 @@ function sort_time($anns)
 function sort_anns($anns)
 {
   $top = [];
+  $normal = [];
   foreach ($anns as $ann) {
     if ($ann["is_top"] === "y") {
       $top[] = $ann;
+    } else {
+      $normal[] = $ann;
     }
   }
 
-  $sorted = sort_time($top) + sort_time($anns);
+  $sorted = array_merge(sort_time($top), sort_time($normal));
   return $sorted;
 }
