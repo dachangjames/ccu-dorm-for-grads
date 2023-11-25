@@ -54,7 +54,7 @@ if (isset($_GET["no"])) {
           echo "<td style='text-align: start; padding-left: 8px;'><a href='/?inner=news&no=" . $sorted[$i]["anno_no"] . "'>";
           echo $sorted[$i]["is_top"] == "y" ? "[置頂] " : "";
           echo $sorted[$i]["subject"] . "</td>";
-          echo "<td>" . substr($sorted[$i]["anno_date"], 0, 16) . "</a></td>";
+          echo "<td>" . substr($sorted[$i]["mod_time"], 0, 16) . "</a></td>";
           echo "</tr>";
         }
       }

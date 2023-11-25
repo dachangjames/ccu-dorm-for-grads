@@ -30,7 +30,7 @@ require_once "include/lib_sort_news.php";
         echo "<td style='text-align: start; padding-left: 8px;'><a href='/?inner=news&no=" . $ann["anno_no"] . "'>";
         echo $ann["is_top"] == "y" ? "[置頂] " : "";
         echo $ann["subject"] . "</td>";
-        echo "<td>" . substr($ann["anno_date"], 0, 16) . "</a></td>";
+        echo "<td>" . substr($ann["mod_time"], 0, 16) . "</a></td>";
         echo "</tr>";
       }
       ?>
