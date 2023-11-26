@@ -39,17 +39,15 @@
     die();
   }
   ?>
-  <form action="/?inner=admset_dep_unit" method="post">
-    <table class="inner-table">
-      <tr style="font-weight: bold;">
-        <td align="center">#</td>
-        <td align="center">系所單位</td>
-        <td align="center">男生名額</td>
-        <td align="center">女生名額</td>
+  <form class="inner-content admset_dep_unit" action="/?inner=admset_dep_unit" method="post">
+    <table class="inner-table" border="1">
+      <tr>
+        <th align="center" colspan="2">系所單位</th>
+        <th align="center">男生名額</th>
+        <th align="center">女生名額</th>
       </tr>
       <tr>
-        <td align="center"><?php echo $dep ?></td>
-        <td align="center"><?php echo $dep . " " . $deps[$dep] ?></td>
+        <th align="center" rowspan="2" colspan="2"><?php echo $dep . " " . $deps[$dep] ?></td>
         <td align="center">
           <input type="number" name=<?php echo "num_m_$dep" ?> placeholder="0" required>
           <label>人</label>
@@ -60,12 +58,27 @@
         </td>
       </tr>
       <tr>
-        <td align="center" colspan="2">
+        <td align="center">
           <button type="submit" name="quota" class="action-button">Submit</button>
         </td>
-        <td align="center" colspan="2">
+        <td align="center">
           <button type="reset" class="action-button">Clear</button>
         </td>
       </tr>
     </table>
+
+    <style>
+      .admset_dep_unit {
+        place-self: start;
+      }
+
+      .admset_dep_unit input {
+        width: 70%;
+      }
+
+      .admset_dep_unit .action-button {
+        padding: 0.4em;
+        width: 80%;
+      }
+    </style>
   </form>
