@@ -72,7 +72,7 @@ class Token
 
     // fetch user permission
     if (!isset($payload["perm"])) {
-      $user = DB::fetch_row("usr_acc", "acc", $payload["acc"]);
+      $user = DB::fetch_row("sl8gdm_permit_rec", "staff_cd", $payload["acc"]);
       // check if user exists
       if (!$user) {
         // wrong account
@@ -81,7 +81,7 @@ class Token
         // wrong password
         return 403;
       } else {
-        $perm = $user["perm"];
+        $perm = $user["permit_cd"];
       }
     } else {
       $perm = $payload["perm"];
