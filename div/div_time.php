@@ -22,7 +22,7 @@ unset($value);
     <p>碩/博士生宿舍相關申請期限</p>
     <p>Application Schedule For The Dormitory</p>
   </div>
-  <div class="inner-content">
+  <div class="inner-content div_time">
     <h3><?php echo $year; ?>學年度 相關申請時程表</h3>
     <table class="inner-table" border="1">
       <tr>
@@ -51,4 +51,11 @@ unset($value);
       </tr>
     </table>
   </div>
+
+  <style>
+    .div_time {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
 </div>

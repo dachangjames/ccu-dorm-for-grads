@@ -37,7 +37,6 @@
 }
 
 .inner-content {
-  place-self: center;
   display: grid;
   place-items: center;
   gap: 1em;

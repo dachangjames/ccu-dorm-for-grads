@@ -42,43 +42,62 @@
   <form class="inner-content admset_dep_unit" action="/?inner=admset_dep_unit" method="post">
     <table class="inner-table" border="1">
       <tr>
-        <th align="center" colspan="2">系所單位</th>
+        <th align="center">系所單位</th>
         <th align="center">男生名額</th>
         <th align="center">女生名額</th>
       </tr>
       <tr>
-        <th align="center" rowspan="2" colspan="2"><?php echo $dep . " " . $deps[$dep] ?></td>
+        <th align="center"><?php echo $dep . " " . $deps[$dep] ?></td>
         <td align="center">
-          <input type="number" name=<?php echo "num_m_$dep" ?> placeholder="0" required>
-          <label>人</label>
+          <div class="input-box">
+            <input type="number" name=<?php echo "num_m_$dep" ?> required>
+            <label>男生名額</label>
+          </div>
         </td>
         <td align="center">
-          <input type="number" name=<?php echo "num_f_$dep" ?> placeholder="0" required>
-          <label>人</label>
-        </td>
-      </tr>
-      <tr>
-        <td align="center">
-          <button type="submit" name="quota" class="action-button">Submit</button>
-        </td>
-        <td align="center">
-          <button type="reset" class="action-button">Clear</button>
+          <div class="input-box">
+            <input type="number" name=<?php echo "num_f_$dep" ?> required>
+            <label>女生名額</label>
+          </div>
         </td>
       </tr>
     </table>
+
+    <div class="buttons">
+      <button type="reset" class="action-button">Clear</button>
+      <button type="submit" name="quota" class="action-button">Submit</button>
+    </div>
 
     <style>
       .admset_dep_unit {
         place-self: start;
       }
 
-      .admset_dep_unit input {
-        width: 70%;
+      .admset_dep_unit .input-box {
+        width: 80%;
+      }
+
+      .admset_dep_unit .input-box>input {
+        width: 100%;
+        height: 2em;
+      }
+
+      .admset_dep_unit .input-box>label {
+        top: 8px;
+        font-size: 0.8em;
+      }
+
+      .admset_dep_unit .buttons {
+        display: flex;
+        padding: 2em;
+        justify-content: center;
+        width: 100%;
+        gap: 1em;
       }
 
       .admset_dep_unit .action-button {
         padding: 0.4em;
-        width: 80%;
+        width: 30%;
       }
     </style>
   </form>
