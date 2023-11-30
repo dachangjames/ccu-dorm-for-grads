@@ -128,7 +128,26 @@ class DB {
 
     return $rows;
   }
-  
+
+  /**
+   * ### Fetch all data from the table.
+   * 
+   * @param string $table
+   * Specify the table to fetch from.
+   * 
+   * @return array|false
+   * Returns the table you fetched as an array, return false if the table doesn't exist.
+   */
+  public static function fetch_table($table)
+  {
+    self::get_connection();
+    $query = "SELECT * FROM $table";
+    $stmt = self::$db->query($query);
+    $table = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $table;
+  }
+
   /**
    * ### Create a row of data in the database.
    * 
