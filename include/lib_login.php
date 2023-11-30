@@ -16,8 +16,16 @@ if (isset($_POST["acc"])) {
 
 // redirect
 if (isset($access_token)) {
-  // send back the access token if there's one
-  header("location: /?token=" . $access_token);
+  if ($access_token === 401) {
+    // invalid account
+    header("location: /?inner=login&auth=401");
+  } else if ($access_token === 403) {
+    // invalid password
+    header("location: /?inner=login&auth=403");
+  } else {
+    // send back the access token if there's one
+    header("location: /?token=" . $access_token);
+  }
 } else {
   header("location: /?inner=login&auth=401");
 }

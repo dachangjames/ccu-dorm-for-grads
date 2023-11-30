@@ -17,8 +17,8 @@ class Token
    * @param array $payload
    * Contains user account and password.
    * 
-   * @return string|unset
-   * Return the access token if the payload is valid.
+   * @return string|int
+   * Return the access token if the payload is valid, if not, return 401 or 403.
    */
   public static function auth($payload)
   {
@@ -30,9 +30,9 @@ class Token
     $payload["pw"] = $hashed_pw;
 
     $tokens = self::sign($payload, $ACCESS_KEY, $REFRESH_KEY, self::ACCESS_EXP, self::REFRESH_EXP);
-    if (!$tokens) {
+    if ($tokens === 401 || $tokens === 403) {
       // wrong account or password
-      return;
+      return $tokens;
     }
 
     [$access_token, $refresh_token] = $tokens;
@@ -61,8 +61,8 @@ class Token
    * @param int $refresh_expired
    * The expired time of refresh token.
    * 
-   * @return array|false
-   * Returns the signed JWT tokens, return false if the payload is invalid.
+   * @return array|int
+   * Returns the signed JWT tokens, return 401 or 403 if the payload is invalid.
    */
   private static function sign($payload, $access_key, $refresh_key, $access_expired, $refresh_expired)
   {
@@ -72,16 +72,16 @@ class Token
 
     // fetch user permission
     if (!isset($payload["perm"])) {
-      $user = DB::fetch_row("usr_acc", "acc", $payload["acc"]);
+      $user = DB::fetch_row("sl8gdm_permit_rec", "staff_cd", $payload["acc"]);
       // check if user exists
       if (!$user) {
         // wrong account
-        return false;
+        return 401;
       } else if ($user["pw"] !== $payload["pw"]) {
         // wrong password
-        return false;
+        return 403;
       } else {
-        $perm = $user["perm"];
+        $perm = $user["permit_cd"];
       }
     } else {
       $perm = $payload["perm"];

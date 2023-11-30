@@ -129,7 +129,6 @@ class DB {
     return $rows;
   }
 
-
   /**
    * ### Fetch all data from the table.
    * 
@@ -139,7 +138,8 @@ class DB {
    * @return array|false
    * Returns the table you fetched as an array, return false if the table doesn't exist.
    */
-  public static function fetch_table($table) {
+  public static function fetch_table($table)
+  {
     self::get_connection();
     $query = "SELECT * FROM $table";
     $stmt = self::$db->query($query);
@@ -147,7 +147,7 @@ class DB {
 
     return $table;
   }
-  
+
   /**
    * ### Create a row of data in the database.
    * 
