@@ -26,10 +26,8 @@ if (isset($_GET["inner"])) {
   } else if (in_array($_GET["inner"], MAPS)) {
     // transmap
     include "transmap.php";
-  } else if ($_GET["inner"] === "time") {
-    include "div/div_time.php";
-  } else if ($_GET["inner"] === "news") {
-    include "div/div_news.php";
+  } else if ($_GET["inner"] === "time" || $_GET["inner"] === "login") {
+    include "div/div_" . $_GET["inner"] . ".php";
   } else {
     // check if the file exist
     $filepath = substr($_GET["inner"], 0, 3) . "/" . $_GET["inner"] . ".php";
