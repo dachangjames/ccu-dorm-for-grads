@@ -26,8 +26,8 @@ if (isset($_GET["inner"])) {
   } else if (in_array($_GET["inner"], MAPS)) {
     // transmap
     include "transmap.php";
-  } else if ($_GET["inner"] === "time") {
-    include "div/div_time.php";
+  } else if ($_GET["inner"] === "time" || $_GET["inner"] === "login") {
+    include "div/div_" . $_GET["inner"] . ".php";
   } else if ($_GET["inner"] === "news") {
     include "div/div_news.php";
   } else {
