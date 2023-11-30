@@ -37,7 +37,6 @@
 }
 
 .inner-content {
-  place-self: center;
   display: grid;
   place-items: center;
   gap: 1em;
@@ -115,6 +114,10 @@ ul.inner-list {
 
   .inner-list {
     align-items: start;
+  }
+
+  .inner-table {
+    font-size: 0.8em;
   }
 }
 

@@ -33,28 +33,30 @@
   position: absolute;
   top: 12px;
   left: 13px;
-  color: var(--text-light);
+  color: var(--primary-dark);
   transition: all 0.2s ease-in;
   pointer-events: none;
   user-select: none;
 }
 
 .input-box > input[type=text],
+.input-box > input[type=number],
 .input-box > input[type=password] {
   outline: none;
   font-size: 20px;
   height: 54px;
   border: 2px solid var(--primary-dark);
   border-radius: 5px;
-  background: white;
+  background: var(--text-light);
   text-indent: 16px;
+  max-width: 100%;
 }
 
 .input-box > input:is(:focus, :valid) + label {
   top: -9px;
   font-size: 12px;
   background: var(--primary-dark);
-  color: white;
+  color: var(--text-light);
   padding: 0 8px 2px;
   border-radius: 10px;
 }

@@ -16,13 +16,14 @@
 // EDIT WITH CATION!!!
 
 const PERMS = ["adm", "dep", "qry", "sto", "std", "sww", "swn", "swo", "swd", "swa", "spo", "stq", "stn"];
+const MAPS = ["map", "map_a", "map_b", "map_c", "map_d", "map_e"];
 
 if (isset($_GET["inner"])) {
   $filepath = "page/pg_" . $_GET["inner"] . ".html";
   if (file_exists($filepath)) {
     // normal static page
     include $filepath;
-  } else if (substr($_GET["inner"], 0, 3) === "map") {
+  } else if (in_array($_GET["inner"], MAPS)) {
     // transmap
     include "transmap.php";
   } else if ($_GET["inner"] === "time" || $_GET["inner"] === "login") {
