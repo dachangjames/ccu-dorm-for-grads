@@ -1,6 +1,4 @@
 <?php
-$year = "111";
-
 // time with seconds ex. yyyy-mm-dd hh:mm:ss.sss
 $times = DB::fetch_row("sl8gdm_time_limit", "apply_year", $year);
 foreach ($times as $key => &$value) {
