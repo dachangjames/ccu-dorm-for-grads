@@ -95,3 +95,71 @@
 .action-button:active {
   background: var(--primary-dark);
 }
+
+.input-switch {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.input-switch > input[type=checkbox] {
+  appearance: none;
+  position: relative;
+  width: 56px;
+  height: 28px;
+  border-radius: 14px;
+  background: var(--primary-light);
+  cursor: pointer;
+}
+
+.input-switch > input[type=checkbox]::after {
+  position: absolute;
+  content: '';
+  background: var(--primary-dark);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: all 0.2s ease-in-out;
+}
+
+.input-switch > input[type=checkbox]:checked::after {
+  left: 31px;
+}
+
+.input-switch > label {
+  border-radius: 5px;
+  padding: 0.2em 0.4em;
+}
+
+.input-switch > label.selected {
+  background: var(--primary-dark);
+  color: var(--text-light);
+  transition: all 0.2s ease-in-out;
+}
+
+.input-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.input-select > select {
+  border: 2px solid var(--primary-dark);
+  appearance: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 0.4em 3em 0.4em 0.6em;
+  background: var(--primary-light);
+  font-size: 1em;
+}
+
+.input-select > .bx {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+}
