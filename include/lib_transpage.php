@@ -28,6 +28,8 @@ if (isset($_GET["inner"])) {
     include "transmap.php";
   } else if ($_GET["inner"] === "time" || $_GET["inner"] === "login") {
     include "div/div_" . $_GET["inner"] . ".php";
+  } else if ($_GET["inner"] === "news") {
+    include "div/div_news.php";
   } else {
     // check if the file exist
     $filepath = substr($_GET["inner"], 0, 3) . "/" . $_GET["inner"] . ".php";
