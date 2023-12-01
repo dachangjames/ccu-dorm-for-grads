@@ -10,28 +10,37 @@
     <p>系所申請名額設定</p>
   </div>
   <?php
-  $deps = [
-    "1000" => "中國文學研究所",
-    "2000" => "數學研究所",
-    "3000" => "資訊工程研究所",
-    "4000" => "心理研究所",
-    "5000" => "法律研究所"
-  ];
+//   $deps = [
+//     "1000" => "中國文學研究所",
+//     "2000" => "數學研究所",
+//     "3000" => "資訊工程研究所",
+//     "4000" => "心理研究所",
+//     "5000" => "法律研究所"
+//   ];
+  
+  
 
   if (isset($_POST["dep"])) {
     $dep = $_POST["dep"];
     $_SESSION["dep"] = $dep;
+    $data = DB::fetchAll_rows("sl8gdm_dep", "unit_head", $_POST["dep"]);
+    $deps = [];
+    foreach ($data as $row) {
+      $deps[$row["unit_parent"]] = $row["unit_name"];
+    }
   } else if (isset($_POST["quota"]) && isset($_SESSION["dep"])) {
     $upd_Table = "sl8gdm_dep";
     $dep = $_SESSION["dep"];
 
     if (isset($_POST["quota"])) {
-      var_dump($_POST);
-      $num_m = $_POST["num_m_$dep"];
-      $num_f = $_POST["num_f_$dep"];
-      $upd_Row = array("unit_parent" => $dep);
-      DB::update_row($upd_Table, $upd_Row, ["a_num_m" => $num_m]);
-      DB::update_row($upd_Table, $upd_Row, ["a_num_f" => $num_f]);
+      unset($_POST["quota"]);
+      foreach ($_POST as $unit_parent => $value) {
+        $sex = substr($unit_parent, 4, 1);
+        $unit = substr($unit_parent, 6);
+        $upd_Row = array("unit_parent" => $unit);
+
+        DB::update_row($upd_Table, $upd_Row, ["a_num_$sex" => $value]);
+      }
       header("location: /?inner=admset_dep");
       exit;
     }
@@ -39,6 +48,7 @@
     die();
   }
   ?>
+
   <form class="inner-content admset_dep_unit" action="/?inner=admset_dep_unit" method="post">
     <table class="inner-table" border="1">
       <tr>
@@ -46,21 +56,23 @@
         <th align="center">男生名額</th>
         <th align="center">女生名額</th>
       </tr>
-      <tr>
-        <th align="center"><?php echo $dep . " " . $deps[$dep] ?></td>
-        <td align="center">
-          <div class="input-box">
-            <input type="number" name=<?php echo "num_m_$dep" ?> required>
-            <label>男生名額</label>
-          </div>
-        </td>
-        <td align="center">
-          <div class="input-box">
-            <input type="number" name=<?php echo "num_f_$dep" ?> required>
-            <label>女生名額</label>
-          </div>
-        </td>
-      </tr>
+      <?php
+      foreach ($deps as $head => $head_name) {
+        echo "<tr><th align='center'>$head $head_name</th>";
+        echo "<td align='center'>
+                <div class='input-box'>
+                  <input type='number' name='num_m_$head' required>
+                  <label>男生名額</label>
+                </div>
+              </td>";
+        echo "<td align='center'>
+                <div class='input-box'>
+                  <input type='number' name='num_f_$head' required>
+                  <label>女生名額</label>
+                </div>
+              </td></tr>";
+      }
+      ?>
     </table>
 
     <div class="buttons">
