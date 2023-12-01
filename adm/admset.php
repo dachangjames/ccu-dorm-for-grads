@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST["dep"])){
+    if(isset($_POST["add_time_set"])){
         header("location:/?inner=admset_new");
     }
 ?>
@@ -38,7 +38,7 @@
         </table>
     </div>
     <form class="buttons" action="/?inner=admset_new" method="post">
-        <button class="action-button" type="submit" name="dep" >新增</button>    
+        <button class="action-button" type="submit" name="add_time_set" >新增</button>    
     </form>
 
 
