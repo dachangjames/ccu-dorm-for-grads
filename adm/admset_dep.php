@@ -27,7 +27,7 @@ if (isset($_POST["dep"])) {
                  <button type='submit' name='dep' value='{$unit['unit_head']}' class='action-button'>設定</button>
                </td></tr>";
         }
-        ?>
+      ?>
     </table>
   </form>
 
