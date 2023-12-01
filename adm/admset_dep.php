@@ -18,36 +18,16 @@ if (isset($_POST["dep"])) {
         <th>學院</th>
         <th>操作</th>
       </tr>
-      <tr>
-        <td>1000 文學院</td>
-        <td>
-          <button type="submit" name="dep" value="1000">設定</button>
-        </td>
-      </tr>
-      <tr>
-        <td>2000 理學院</td>
-        <td>
-          <button type="submit" name="dep" value="2000">設定</button>
-        </td>
-      </tr>
-      <tr>
-        <td>3000 工學院</td>
-        <td>
-          <button type="submit" name="dep" value="3000">設定</button>
-        </td>
-      </tr>
-      <tr>
-        <td>4000 社會科學院</td>
-        <td>
-          <button type="submit" name="dep" value="4000">設定</button>
-        </td>
-      </tr>
-      <tr>
-        <td>5000 法學院</td>
-        <td>
-          <button type="submit" name="dep" value="5000" class="action-button">設定</button>
-        </td>
-      </tr>
+      <?php
+        $units=DB::fetch_table("sl8gdm_dep");
+        foreach($units as $unit){
+          // echo "{$unit['unit_head']} {$unit['unit_head_name']}<br>";
+          echo"<tr><td>{$unit['unit_head']} {$unit['unit_head_name']}</td>
+               <td>
+                 <button type='submit' name='dep' value='{$unit['unit_head']}' class='action-button'>設定</button>
+               </td></tr>";
+        }
+        ?>
     </table>
   </form>
 
