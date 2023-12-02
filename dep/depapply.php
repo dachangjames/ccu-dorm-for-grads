@@ -99,11 +99,6 @@
 
 
     <style>
-      .depapply {
-        place-content: start;
-        justify-content: center;
-      }
-
       .depapply .unit {
         width: 70%;
       }

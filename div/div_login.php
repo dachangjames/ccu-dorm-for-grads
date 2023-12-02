@@ -38,6 +38,8 @@
     .pg_login {
       grid-template-columns: repeat(2, 1fr);
       place-self: center;
+      width: unset;
+      max-width: 100%;
     }
 
     .pg_login input {
