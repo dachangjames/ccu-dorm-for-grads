@@ -19,6 +19,7 @@
     } else {
       $unit = DB::fetch_row("sl8gdm_permit_rec", "staff_cd", $_SESSION["account"]["acc"]);
       $unit_parent = $unit["unit_parent"];
+      $_SESSION["dep"] = $unit_parent;
       $dep = DB::fetch_row("sl8gdm_dep", "unit_parent", $unit_parent);
       $unit_name = $dep["unit_name"];
       $staff_name = $unit["staff_name"];
@@ -27,7 +28,7 @@
       $a_num_m = $dep["a_num_m"];
       $a_num_f = $dep["a_num_f"];
       echo "<h3>碩/博士生宿舍申請作業</h3>
-            <table class='inner-table' border='1'>
+            <table class='inner-table unit' border='1'>
               <tr>
                 <th>申請單位</th>
                 <td>$unit_parent $unit_name</td>
@@ -52,11 +53,47 @@
                 <th>女</th>
                 <td>$a_num_f</td>
               </tr>
-            </table>
-            <form action='/?inner=depapply_unit' method='POST'>
-              <button class='action-button' type='submit' name='dep' value='$unit_parent'>新增名單</button>
+            </table>";
+      $stuapply = DB::fetchAll_rows("sl8gdm_dep_stuapply", "unit_parent", $unit_parent);
+      if ($stuapply) {
+        echo "<table class='inner-table apply' border='1'>
+                <tr>
+                  <th>申請編號</th>
+                  <th>學號</th>
+                  <th>性別</th>
+                  <th>選寢方式</th>
+                  <th>操作</th>
+                </tr>";
+        foreach ($stuapply as $apply) {
+          if ($apply["choice_type"] === "s") {
+            $choice = "自選寢室";
+          } else if ($apply["choice_type"] === "m") {
+            $choice = "管理員排定寢室";
+          } else {
+            $choice = "原寢室";
+          }
+
+          echo "<tr>
+                  <td>" . $apply["a_no"] . "</td>
+                  <td>" . $apply["stu_cd"] . "</td>
+                  <td>" . ($apply["sex"] === "M" ? "男" : "女") . "</td>
+                  <td>" . $choice . "</td>
+                  <td>
+                    <form action='/?inner=depapply_unit' method='POST'>
+                      <input type='text' name='sid' value=" . $apply["stu_cd"] . " style='display: none'>
+                      <button class='action-button' type='submit' name='op' value='update'>修改</button>
+                    </form>
+                  </td>
+                </tr>";
+        }
+        echo "</table>";
+      }
+
+      echo "<form action='/?inner=depapply_unit' method='POST' class='buttons'>
+              <button class='action-button' type='submit' name='op' value='add'>新增名單</button>
+              <button class='action-button' type='button' onclick=\"window.location.href ='/output/output_depapp.php'\">輸出報表</button>
             </form>
-          </div>";
+            </div>";
     }
     ?>
 
@@ -67,8 +104,27 @@
         justify-content: center;
       }
 
+      .depapply .unit {
+        width: 70%;
+      }
+
+      .depapply .apply {
+        table-layout: auto;
+      }
+
+      .depapply .buttons {
+        display: flex;
+        gap: 1em;
+      }
+
       .depapply .action-button {
         padding: 0.6em 2em;
+      }
+
+      @media (width < 1200px) {
+        .depapply .unit {
+          width: 100%;
+        }
       }
     </style>
   </div>

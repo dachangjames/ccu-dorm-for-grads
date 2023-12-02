@@ -10,45 +10,126 @@
     <p>住宿申請資料填寫</p>
   </div>
   <?php
-  if (!isset($_POST["dep"])) {
-    var_dump($_POST);
+  if (!isset($_SESSION["dep"])) {
     die();
+  } else if (isset($_POST["sid"]) && !isset($_POST["op"])) {
+    $dep = $_SESSION["dep"];
+    $stu_cd = $_POST["sid"];
+    $name = isset($_POST["name"]) ? $_POST["name"] : null;
+    $sex = isset($_POST["sex"]) ? "F" : "M";
+    $choice = $_POST["choice"];
+    $old = isset($_POST["old"]) ? $_POST["old"] : null;
+    $desc = isset($_POST["desc"]) ? $_POST["desc"] : null;
+
+    // invalid sid
+    if (strlen($stu_cd) !== 9 && $_POST["op"] === "add") {
+      echo "<script>
+              alert('學號格式錯誤')
+              window.location.href = '/?inner=depapply_unit'
+            </script>";
+    }
+
+    // get all dep_stuapply a_nos
+    $a_nos = DB::fetchAll_rows("a_no", "ty_pe", "dep_stuapply");
+    $dep_a_nos = [];
+    foreach ($a_nos as $a_no) {
+      if (substr($a_no["a_no"], 0, 6) === $year . substr($dep, 0, 3)) {
+        $dep_a_nos[] = $a_no["a_no"];
+      }
+    }
+
+    // check stream number
+    $stream = 0;
+    foreach ($dep_a_nos as $dep_a_no) {
+      if ((int)substr($dep_a_no, 7, 4) > $stream) {
+        $stream = (int)substr($dep_a_no, 7, 4);
+      }
+    }
+
+    $a_no = $year . $dep . str_pad($stream + 1, 4, "0", STR_PAD_LEFT);
+
+
+    // check is_chg
+    $prev = DB::fetch_row("sl8gdm_dep_stuapply", "stu_cd", $stu_cd);
+    if ($choice === "o" && $prev) {
+      $is_chg = $prev;
+    } else if ($prev) {
+      $is_chg = $prev["is_chg"] + 1;
+    } else if ($old) {
+      $is_chg = 1;
+    } else {
+      $is_chg = 0;
+    }
+
+    if ($prev) {
+      $success = DB::update_row(
+        "sl8gdm_dep_stuapply",
+        ["stu_cd" => $stu_cd],
+        [
+          "choice_type" => $choice,
+          "org_room" => $old === null ? $prev["org_room"] : $old,
+          "factor" => $desc === null ? $prev["factor"] : $desc,
+          "a_date" => date("Y-m-d H:i:s"),
+          "is_chg" => $is_chg
+        ]
+      );
+    } else {
+      $success = DB::create_row(
+        "sl8gdm_dep_stuapply",
+        [
+          "a_no" => $a_no,
+          "stu_cd" => $stu_cd,
+          "sex" => $sex,
+          "unit_parent" => $dep,
+          "permit_cd" => "sto",
+          "choice_type" => $choice,
+          "del_chk" => "N",
+          "org_room" => $old,
+          "factor" => $desc,
+          "a_date" => date("Y-m-d H:i:s"),
+          "is_chg" => $is_chg
+        ]
+      );
+    }
+
+    if ($success === false) {
+      echo "<script>
+              alert('操作失敗')
+              window.location.href = '/?inner=depapply_unit'
+            </script>";
+    } else {
+      $count = $sex === "M" ? "m_count" : "f_count";
+      $row = DB::fetch_row("sl8gdm_dep", "unit_parent", $dep);
+      $prev_count = $row[$count];
+      DB::update_row("sl8gdm_dep", ["unit_parent" => $dep], [$count => $prev_count + 1]);
+      DB::create_row("a_no", ["a_no" => $a_no, "ty_pe" => "dep_stuapply"]);
+      echo "<script>
+              alert('操作成功')
+              window.location.href = '/?inner=depapply'
+            </script>";
+    }
   }
   ?>
   <form class="inner-content depapply_unit" action="/?inner=depapply_unit" method="post">
-    <h3>申請單位：<?php echo $_POST["dep"] ?></h3>
-    <div class="input-box">
-      <input type="text" name="sid" required>
-      <label>學號</label>
-    </div>
-    <div class="input-box">
-      <input type="text" name="name" required>
-      <label>姓名</label>
-    </div>
-    <div class="input-box">
-      <input type="password" name="pid" required>
-      <label>身份證字號</label>
-      <i class='bx bx-show'></i>
-      <i class='bx bx-hide'></i>
-    </div>
-    <div class="input-switch">
-      <span for="sex">性別：</span>
-      <label class="selected">男</label>
-      <input type="checkbox" name="sex">
-      <label>女</label>
-    </div>
-    <div class="input-box description">
-      <input type="text" name="desc">
-      <label>備註</label>
-    </div>
-    <div class="input-box">
-      <input type="text" name="mobile" required>
-      <label>手機號碼</label>
-    </div>
-    <div class="input-box">
-      <input type="text" name="phone">
-      <label>聯絡電話</label>
-    </div>
+    <h3>申請單位：<?php echo $_SESSION["dep"] ?></h3>
+    <?php if (($_POST["op"] === "add")) : ?>
+      <div class="input-box">
+        <input type="text" name="sid" required>
+        <label>學號</label>
+      </div>
+      <div class="input-box">
+        <input type="text" name="name" required>
+        <label>姓名</label>
+      </div>
+      <div class="input-switch">
+        <span for="sex">性別：</span>
+        <label class="selected">男</label>
+        <input type="checkbox" name="sex">
+        <label>女</label>
+      </div>
+    <?php elseif ($_POST["op"] === "update") : ?>
+      <input type="text" name="sid" value=<?= $_POST["sid"] ?> hidden>
+    <?php endif ?>
     <div class="input-select">
       <span>選寢方式：</span>
       <select name="choice">
@@ -61,6 +142,10 @@
     <div class="input-box">
       <input type="text" name="old">
       <label>原寢室代號</label>
+    </div>
+    <div class="input-box description">
+      <input type="text" name="desc">
+      <label>備註</label>
     </div>
     <div class="buttons">
       <button class="action-button" type="submit">送出</button>
