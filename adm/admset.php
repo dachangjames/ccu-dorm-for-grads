@@ -1,8 +1,3 @@
-<?php
-    if(isset($_POST["add_time_set"])){
-        header("location:/?inner=admset_new");
-    }
-?>
 <div class="inner">
     <p class="inner-nav">
         <a href="/" class="link">回首頁</a>
@@ -32,13 +27,17 @@
                         <td><?= $row["apply_year"] ?></td>
                         <td><?= substr($row["dep_open"], 0, 16) ?> 至 <?= substr($row["dep_close"], 0, 16) ?></td>
                         <td><?= substr($row["stusl_open"], 0, 16) ?> 至 <?= substr($row["stusl_close"], 0, 16) ?></td>
-                        <td><?= ($row["Is_order_F"] == 'Y') ? "修改" : "無法修改" ?></td>
+                        <td>
+                            <form action="/?inner=admset_new" method="post">
+                                <button class="action-button" type="submit" name="modify_time_set" value="<?= $row["apply_year"]?>">修改</button>
+                            </form>       
+                        </td>
                     </tr>  
                 <?php endforeach; ?>
         </table>
     </div>
     <form class="buttons" action="/?inner=admset_new" method="post">
-        <button class="action-button" type="submit" name="add_time_set" >新增</button>    
+        <button class="action-button" type="submit" name="add_time_set">新增</button>    
     </form>
 
 
