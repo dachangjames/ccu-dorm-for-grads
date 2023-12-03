@@ -21,6 +21,12 @@ foreach ($all_rooms as $room) {
   </div>
   <div class="inner-content stu_choice">
     <h3>學號：<?= $sid ?></h3>
+    <?php
+    if (DB::fetch_row("sl8gdm_chrmlist", "stu_cd", $sid)) {
+      echo "<h3>已有床位，不開放申請。</h3>";
+      die();
+    }
+    ?>
     <h3>請選擇排寢棟別及樓層</h3>
     <table class="inner-table">
       <?php foreach ($catgorized_rooms as $building => $floors) : ?>

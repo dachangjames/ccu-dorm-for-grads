@@ -16,8 +16,43 @@ if (isset($_POST["select"])) {
     $id_list[] = $chrm["room_id"];
   }
 } else if (isset($_POST["selected_room"])) {
-  var_dump($_POST);
-  die();
+  echo "<script>
+          if (!confirm('確定選擇此床位？')) {
+            alert('操作取消')
+            location.href = '/?inner=stu_choice'
+          }
+        </script>";
+  
+  $a_nos = DB::fetchAll_rows("a_no", "ty_pe", "chrmlist");
+  $user = DB::fetch_row("sl8gdm_permit_rec", "staff_cd", $sid);
+  $dep = $user["unit_parent"];
+
+  $dep_a_nos = [];
+  foreach ($a_nos as $a_no) {
+    if (substr($a_no["a_no"], 0, 6) === $year . substr($dep, 0, 3)) {
+      $dep_a_nos[] = $a_no["a_no"];
+    }
+  }
+
+  // check stream number
+  $stream = 0;
+  foreach ($dep_a_nos as $dep_a_no) {
+    if ((int)substr($dep_a_no, 7, 4) > $stream) {
+      $stream = (int)substr($dep_a_no, 7, 4);
+    }
+  }
+
+  $a_no = $year . $dep . str_pad($stream + 1, 4, "0", STR_PAD_LEFT);
+  // DB::create_row("a_no", ["a_no" => $a_no, "ty_pe" => "chrmlist"]);
+
+  $room_id = substr($_POST["selected_room"], 0, 4);
+  $room = DB::fetch_row("sl8gdm_room", "room_id", $room_id);
+  DB::update_row("sl8gdm_room", ["room_id" => substr($_POST["selected_room"], 0, 4)], ["room_p" => $room["room_p"] + 1, "room_remain" => $room["room_remain"] - 1]);
+  DB::create_row("sl8gdm_chrmlist", ["a_no" => $a_no, "stu_cd" => $sid, "room_id" => $_POST["selected_room"], "is_in" => "n", "cho_date" => date("Y-m-d H:i:s"), "cho_p" => $sid]);
+  echo "<script>
+          alert('操作成功')
+          location.href = '/?inner=stu_choice'
+        </script>";
 } else {
   die();
 }

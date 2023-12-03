@@ -47,7 +47,7 @@
     }
 
     $a_no = $year . $dep . str_pad($stream + 1, 4, "0", STR_PAD_LEFT);
-
+    DB::create_row("a_no", ["a_no" => $a_no, "ty_pe" => "dep_stuapply"]);
 
     // check is_chg
     $prev = DB::fetch_row("sl8gdm_dep_stuapply", "stu_cd", $stu_cd);
