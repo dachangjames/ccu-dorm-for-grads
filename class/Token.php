@@ -81,16 +81,19 @@ class Token
         // wrong password
         return 403;
       } else {
+        $sex = $user["sex"];
         $perm = $user["permit_cd"];
       }
     } else {
       $perm = $payload["perm"];
+      $sex = $payload["sex"];
     }
 
     // additional payload data
     $payload_meta = [
       "iat" => time(),
-      "perm" => $perm
+      "perm" => $perm,
+      "sex" => $sex,
     ];
 
     // encode payload

@@ -6,7 +6,7 @@
     <a href="/?inner=depapply" class="link">住宿資格申請</a>
   </li>
   <li>
-    <a href="/?inner=depdel" class="link">放棄床位申請X</a>
+    <a href="/?inner=depdel" class="link">放棄床位申請</a>
   </li>
   <li>
     <a href="/?inner=depdelquery" class="link">確認放棄查詢X</a>
