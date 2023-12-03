@@ -36,8 +36,21 @@
             header("location: /?inner=admset");
             exit;
         }
+    } else if (isset($_POST["modify_time_set"])){
+        $year_key = $_POST["modify_time_set"];
+        $time_set = [];
+        $time_set= DB::fetchAll_rows("sl8gdm_time_limit", "apply_year", $year_key); 
+
+        $dep_open_date = substr($time_set[0]["dep_open"], 0, 10);
+        $dep_close_date = substr($time_set[0]["dep_close"], 0, 10);
+        $stusl_open_date = substr($time_set[0]["stusl_open"], 0, 10);
+        $stusl_close_date = substr($time_set[0]["stusl_close"], 0, 10);
+        $dep_open_time = substr($time_set[0]["dep_open"], 11, 15);
+        $dep_close_time = substr($time_set[0]["dep_close"], 11, 15);
+        $stusl_open_time = substr($time_set[0]["stusl_open"], 11, 15);
+        $stusl_close_time = substr($time_set[0]["stusl_close"], 11, 15);
     } else {
-        echo "data failed";
+        // fail to write into DB
         die();
     }
 ?>
@@ -47,9 +60,9 @@
             <br>
             <label id="yearLabel">學年度: </label>
                                                     <!-- ccu : 1989 -->
-            <input type="number" name="year_input" required min="78">
+            <input type="number" name="year_input" required min="78" value="<?= $year_key ? $year_key : '' ?>">
             <label id="semesterLabel">學期: </label>
-            <input type="number" name="semester_input" required min="1" max="2">
+            <input type="number" name="semester_input" required min="1" max="2" value="<?= $year_key ? '1' : '' ?>">
             <p>學年度請輸入三碼，學期請輸入一碼。</p>
             <p>(例: 98學年度請填098、上學期請填1)</p>
         </div>
@@ -64,34 +77,34 @@
                     <td>1. 系所申請期限</td>
                     <td>              
                         <label>設定日期</label>     
-                        <input type="date" name="dep_open_date" required>
+                        <input type="date" name="dep_open_date" required value="<?= $year_key ? $dep_open_date : '' ?>" >
                         <br>
                         <label>設定時間</label>
-                        <input type="time" name="dep_open_time" required>
+                        <input type="time" name="dep_open_time" required value="<?= $year_key ? $dep_open_time : '' ?>">
                     </td>
                     <td>
                         <label>設定日期</label>     
-                        <input type="date" name="dep_close_date" required>
+                        <input type="date" name="dep_close_date" required value="<?= $year_key ? $dep_close_date : '' ?>">
                         <br>
                         <label>設定時間</label>
-                        <input type="time" name="dep_close_time" required>
+                        <input type="time" name="dep_close_time" required value="<?= $year_key ? $dep_close_time : '' ?>">
                     </td>
                 </tr>
                 <tr>
                     <td>2. 遞補申請期限</td>
                     <td>              
                         <label>設定日期</label>     
-                        <input type="date" name="stusl_open_date" required>
+                        <input type="date" name="stusl_open_date" required value="<?= $year_key ? $stusl_open_date : '' ?>">
                         <br>
                         <label>設定時間</label>
-                        <input type="time" name="stusl_open_time" required>
+                        <input type="time" name="stusl_open_time" required value="<?= $year_key ? $stusl_open_time : '' ?>">
                     </td>
                     <td>
                         <label>設定日期</label>     
-                        <input type="date" name="stusl_close_date" required>
+                        <input type="date" name="stusl_close_date" required value="<?= $year_key ? $stusl_close_date : '' ?>">
                         <br>
                         <label>設定時間</label>
-                        <input type="time" name="stusl_close_time" required>
+                        <input type="time" name="stusl_close_time" required value="<?= $year_key ? $stusl_close_time : '' ?>">
                     </td>
                 </tr>
             </table>
