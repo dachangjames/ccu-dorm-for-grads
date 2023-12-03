@@ -33,13 +33,11 @@ if (isset($_POST["dep"])) {
 
   <style>
     .admset_dep {
-      width: 100%;
-      place-self: start;
+      grid-template-columns: 50%;
     }
 
     .admset_dep .action-button {
       padding: 0.4em;
-      width: 40%;
     }
 
     .admset_dep .inner-table {

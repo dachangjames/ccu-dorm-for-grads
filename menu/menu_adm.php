@@ -1,6 +1,6 @@
 <ul>
   <li>
-    <a href="/?inner=admset" class="link">期初設定X</a>
+    <a href="/?inner=admset" class="link">期初設定</a>
   </li>
   <li>
     <a href="/?inner=admset_dep" class="link">系所設定</a>
@@ -24,7 +24,7 @@
     <a href="/?inner=admdelchk" class="link">放棄確認X</a>
   </li>
   <li>
-    <a href="/output/output_dormlist.php" target="_blank" class="link">住宿名冊X</a>
+    <a href="/output/output_dormlist.php" target="_blank" class="link">住宿名冊</a>
   </li>
   <li>
     <a href="/" class="link">回首頁</a>

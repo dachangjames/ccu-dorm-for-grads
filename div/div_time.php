@@ -49,11 +49,4 @@ unset($value);
       </tr>
     </table>
   </div>
-
-  <style>
-    .div_time {
-      display: flex;
-      flex-direction: column;
-    }
-  </style>
 </div>

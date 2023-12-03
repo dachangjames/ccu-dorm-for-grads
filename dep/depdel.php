@@ -45,13 +45,13 @@ $stuapply = DB::fetchAll_rows("sl8gdm_dep_stuapply", "unit_parent", $unit_parent
           <tr>
             <td><?= $apply["a_no"] ?></td>
             <td><?= $apply["stu_cd"] ?></td>
-            <td><?= $apply["sex"] ?></td>
+            <td><?= $apply["sex"] === "M" ? "男" : "女" ?></td>
             <td><?= $choice ?></td>
             <td>
               <form action="/?inner=depdel" method="POST">
-                <?php if ($apply["del_chk"] === "G"):?>
+                <?php if ($apply["del_chk"] === "G") : ?>
                   <p>放棄待確認</p>
-                <?php else: ?>
+                <?php else : ?>
                   <button class="action-button" name="a_no" value=<?= $apply["a_no"] ?>>放棄</button>
                 <?php endif ?>
               </form>
@@ -65,9 +65,12 @@ $stuapply = DB::fetchAll_rows("sl8gdm_dep_stuapply", "unit_parent", $unit_parent
   </div>
 
   <style>
+    .depdel {
+      grid-template-columns: 70%;
+    }
+
     .depdel>.inner-table {
       table-layout: auto;
-      width: 100%;
     }
 
     .depdel .action-button {
