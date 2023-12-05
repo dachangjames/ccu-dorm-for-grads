@@ -3,26 +3,17 @@
       header("location:/?inner=admperm_unit");
     }
 
-    $college = [
-      "文學院"=>array("中國文學研究所"),
-      "理學院"=>array("數學研究所"),
-      "社會科學院"=>array("心理研究所"),
-      "工學院"=>array("資訊工程研究所"),
-      "法學院"=>array("法律研究所")
-    ];
+    $data=DB::fetch_table("sl8gdm_dep");
 
-    $deps = [
-      "1000" => "中國文學研究所",
-      //"1001"=>"歷史研究所",
-      "2000" => "數學研究所",
-      //"2001"=>"物理研究所",
-      "3000" => "心理研究所",
-      //"3001"=>"勞工研究所"
-      "4000" => "資訊工程研究所",
-      //"4001"=>"電機工程研究所",
-      "5000" => "法律研究所",
-      //"5001"=>"法學研究所"
-    ];
+    $college=[];
+    foreach($data as $row){
+      $college[$row["unit_head_name"]][]=$row["unit_name"];
+    }
+
+    $deps =[];
+    foreach ($data as $row) {
+      $deps[$row["unit_parent"]] = $row["unit_name"];
+    }
 ?>
 
 <div class="inner">
@@ -64,11 +55,12 @@
 
     .admperm .action-button {
       padding: 0.7em;
-      width: 13%;
+      width: 15%;
     }
 
     .admperm .inner-table {
-      table-layout: auto;
+      width: 90%;
+      /* table-layout: auto; */
     }
   </style>
 <div>
