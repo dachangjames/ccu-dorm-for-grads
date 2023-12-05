@@ -26,7 +26,7 @@
     $data = DB::fetchAll_rows("sl8gdm_dep", "unit_head", $_POST["dep"]);
     $deps = [];
     foreach ($data as $row) {
-      $deps[$row["unit_parent"]] = $row["unit_name"];
+      $deps[$row["unit_parent"]] = $row["unit_name"];    
     }
   } else if (isset($_POST["quota"]) && isset($_SESSION["dep"])) {
     $upd_Table = "sl8gdm_dep";
