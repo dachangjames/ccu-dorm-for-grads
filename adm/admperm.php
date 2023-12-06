@@ -31,19 +31,22 @@
   <form class="inner-content admperm" action="/?inner=admperm_unit" method="post">
 
     <?php 
-    foreach($college as $keys => $values){ //學院的table
+    foreach($college as $keys => $values) { //学院的table
       echo "<table class="."inner-table".">";
       echo "<tr>"."<th>".($keys)."</th>"."</tr> ";
       echo "<tr>";
-      foreach($values as $value){ //每個學院table裡的學系
-        $dep=array_search($value,$deps);
-        echo "<td>";
-        echo "<button type="."submit"." name="."perm"." value=".$dep." class="."action-button".">".$value."</button>";
-        echo "</td>";
+      echo "<td>";
+      $firstButton = true; // 用于判断是否是第一个按钮
+  
+      foreach($values as $value) { //每个学院table里的学系
+          $dep = array_search($value, $deps);
+          echo "<span style='margin:5px;'><button type='submit' name='perm' value='".$dep."' class='action-button'>".$value."</button></span>";
       }
+      echo "</td>";
       echo "</tr>";
       echo "</table>";
     }
+  
     ?>
   </form>
 
@@ -54,8 +57,11 @@
     }
 
     .admperm .action-button {
-      padding: 0.7em;
+      /* padding-right: 0.7em; */
       width: 15%;
+      height: 100px;
+      vertical-align: top;
+      margin-bottom: 10px;
     }
 
     .admperm .inner-table {
