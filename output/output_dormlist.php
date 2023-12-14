@@ -3,6 +3,17 @@ include "../include/lib_loadpdf.php";
 
 require_once "../class/DB.php";
 
+if(!isset($_SESSION["perm"])){
+  echo "<script>alert('請先登入')</script>";
+  header("location: /");
+  die();
+  if($_SESSION["perm"] != "adm"){
+    echo "<script>alert('未授權')</script>";
+    header("location: /");
+    die();
+  }
+}
+
 $pdf->Cell(0, 16, "碩、博士生宿舍住宿名單", 0, 1, "C");
 $pdf->Ln(5);
 
