@@ -13,7 +13,7 @@ $desc=array (
 );
 $up=-125;
 $ut=50;
-$ttffile='C:\hank\college\SE\PJ\output/font/unifont/NotoSansTC-Regular.ttf';
+$ttffile=dirname(__FILE__) . '\NotoSansTC-Regular.ttf';
 $originalsize=7110560;
 $fontkey='notosans';
 ?>
