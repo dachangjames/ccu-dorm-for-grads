@@ -1,17 +1,3 @@
-<?php
-
-    $data = DB::fetch_table("sl8gdm_permit");
-    $stu_perm=[];
-
-    foreach($data as $row){
-        if(substr($row["permit_cd"],0,1)==="s"){
-            $stu_perm[]=$row["permit_cd"];
-        }
-    }
-
-?>
-
-
 <div class="inner">
   <p class="inner-nav">
     <a href="/" class="link">回首頁</a>
@@ -62,4 +48,3 @@
     }
   </style>
 </div>
-
