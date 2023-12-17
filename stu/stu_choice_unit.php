@@ -43,7 +43,7 @@ if (isset($_POST["select"])) {
   }
 
   $a_no = $year . $dep . str_pad($stream + 1, 4, "0", STR_PAD_LEFT);
-  // DB::create_row("a_no", ["a_no" => $a_no, "ty_pe" => "chrmlist"]);
+  DB::create_row("a_no", ["a_no" => $a_no, "ty_pe" => "chrmlist"]);
 
   $room_id = substr($_POST["selected_room"], 0, 4);
   $room = DB::fetch_row("sl8gdm_room", "room_id", $room_id);
