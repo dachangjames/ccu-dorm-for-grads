@@ -5,11 +5,10 @@
 		<span>期初設定</span>
 	</p>
 	<div class="inner-subtitle">
-		<p>研究生宿舍管理作業 期初設定及期限設定</p>
+		<p>期初設定</p>
 	</div>
 	<?php
 	// connect DB and fetch data here
-	$time_set = [];
 	$time_set = DB::fetch_table("sl8gdm_time_limit");
 	// var_dump($time_set); // print all value in table
 	?>
@@ -42,16 +41,28 @@
 
 
 	<style>
+		.admset {
+			grid-template-columns: 90%;
+		}
+
+		.admset .inner-table {
+			table-layout: auto;
+		}
+
+		.admset .inner-table form {
+			padding: 0 1em;
+		}
+
 		.admset .buttons {
 			display: flex;
 			padding: 2em;
 			justify-content: center;
-			width: 100%;
+			width: 30%;
 			gap: 1em;
 		}
 
 		.admset .action-button {
 			padding: 0.4em;
-			width: 30%;
+			width: 100%;
 		}
 	</style>
