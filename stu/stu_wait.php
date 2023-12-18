@@ -13,38 +13,23 @@
     $stu_id=$account["acc"];
     $info=DB::fetch_row("sl8gdm_chrmlist", "stu_cd", $stu_id);
 
-    $currentDateTime = date("Y-m-d H:i:s");
-    $ROC_year=substr($currentDateTime,0,4)-1911;
-    $valid_date=DB::fetch_row("sl8gdm_time_limit", "apply_year", $ROC_year);
+    $valid_date=DB::fetch_row("sl8gdm_time_limit", "apply_year", $year);
 
-    if(strtotime($currentDateTime)<strtotime($valid_date["stusl_open"])||strtotime($currentDateTime)>strtotime($valid_date["stusl_close"])){
+    if($year<strtotime($valid_date["stusl_open"])||$year>strtotime($valid_date["stusl_close"])){
         echo "<h1>遞補申請還未開放</h1>";
     }else{
         if($info===0){
-          echo "<div class='inner-content'>";
-          echo "<h3>你已經申請遞補</h3>";
+          echo "<div class='inner-content stu_wait'>";
+          echo "<h1>你已經申請遞補</h1>";
           echo "<a href='/?inner=stu_choice' class='link' style='font-size:22'>修改床位</a>";
           echo  "</div>";
         }else{
-          echo "<div class='inner-content'>";
-          echo "<h3>你還未申請遞補了</h3>";
+          echo "<div class='inner-content stu_wait'>";
+          echo "<h1>你還未申請遞補</h1>";
           echo "<a href='/?inner=stu_choice' class='link' style='font-size:22'>選擇床位</a>";
           echo  "</div>";
         }
     }
 
   ?>
-  <style>
-    .stu_wait {
-        grid-template-columns: 50%;
-    }
-
-    .stu_wait .action-button {
-      padding: 0.4em;
-    }
-    
-    .stu_wait .inner-table {
-      table-layout: auto;
-    }
-  </style>
 </div>
