@@ -64,7 +64,6 @@ if (isset($_POST["perm"])) {
 
       <table class="inner-table" border="1" id="permTable">
         <tr>
-          <th>#</th>
           <th>使用者代號</th>
           <th>使用者姓名</th>
           <th>所屬單位</th>
@@ -77,7 +76,6 @@ if (isset($_POST["perm"])) {
         foreach ($row as $staff) { //權限table
           if (substr($staff["staff_cd"], 0, 3) === "dep" || substr($staff["staff_cd"], 0, 3) === "adm") {
             echo "<tr>";
-            echo "<th>" . (++$cnt) . "</th>";
             echo "<td>" . $staff["staff_cd"] . "</td>";
             echo "<td>" . $staff["staff_name"] . "</td>";
             echo "<td>" . $deps[$perm] . "</td>";
@@ -99,22 +97,24 @@ if (isset($_POST["perm"])) {
           place-self: start;
         }
 
+        .admperm_unit .inner_table {
+          table-layout: auto;
+        }
+
         .admperm_unit input {
-          width: 70%;
+          width: 100%;
         }
 
         .admperm_unit .action-button {
+          max-width: 100%;
+          width: 120px;
           padding: 0.4em;
-          width: 10%;
         }
 
         .admperm_unit .button-part {
-          padding: 1em;
-          padding-inline: 2em;
-          grid-template-rows: auto auto 1fr;
-          text-align: center;
           width: 100%;
-          height: 100%;
+          display: flex;
+          justify-content: center;
           gap: 1em;
         }
 
@@ -123,7 +123,7 @@ if (isset($_POST["perm"])) {
           border: 2px solid var(--primary-dark);
         }
 
-        ::placeholder {
+        .admperm_unit ::placeholder {
           text-align: center;
           color: var(--primary-dark);
         }
@@ -138,31 +138,31 @@ if (isset($_POST["perm"])) {
         var row = table.insertRow(-1);
 
         // 創建第一個單元格並設置為 <th>
-        var cell0 = document.createElement("th");
-        cell0.innerHTML = cnt += 1;
-        cell0.setAttribute("scope", "row"); // 添加 scope 屬性，表示這是行的標頭
-        row.appendChild(cell0);
+        // var cell0 = document.createElement("th");
+        // cell0.innerHTML = cnt += 1;
+        // cell0.setAttribute("scope", "row"); // 添加 scope 屬性，表示這是行的標頭
+        // row.appendChild(cell0);
 
         // 從第二個單元格開始，創建 <td> 元素
-        for (var i = 1; i < 6; i++) {
+        for (var i = 0; i < 5; i++) {
           var cell = row.insertCell(i);
 
           // Add input fields to each cell
           switch (i) {
-            case 1:
+            case 0:
               cell.innerHTML = '<input type="text" name="column1[]" class="input-box2" pattern="^(dep)\\d{7}$" placeholder="dep+7位數字" required title="輸入錯誤，請以dep開頭，後跟7位數字">';
               break;
-            case 2:
+            case 1:
               cell.innerHTML = '<input type="text" name="column2[]" class="input-box2" required>';
               break;
-            case 3:
+            case 2:
               cell.innerHTML = '<?php echo $deps[$perm] ?>';
               break;
-            case 4:
+            case 3:
               cell.innerHTML = '<?php echo $perm ?>';
               break;
-            case 5:
-              cell.innerHTML = '<button type="button" class="action-button" style="font-size: 0.7em; width: 40%" onclick="deleteRow(this)">刪除新增列</button>';
+            case 4:
+              cell.innerHTML = '<button type="button" class="action-button" style="font-size: 0.7em;" onclick="deleteRow(this)">刪除新增列</button>';
               break;
           }
         }

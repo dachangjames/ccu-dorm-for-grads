@@ -164,3 +164,11 @@
   right: 14px;
   top: 14px;
 }
+
+.input-time > input {
+  outline: none;
+  border: 2px solid var(--primary-dark);
+  border-radius: 5px;
+  background: var(--text-light);
+  text-align: center;
+}
