@@ -31,7 +31,7 @@ else {
 		<table class="inner-table" border="1">
 			<tr>
                 <td>系所</td>
-                <td><?php echo $dep_info["unit_parent"]; ?> <?php echo $dep_info["unit_name"]; ?></td>
+                <td><?php echo $dep_info["unit_parent"]." ".$dep_info["unit_name"]; ?></td>
             </tr>
             <tr>
                 <td>學號</td>
