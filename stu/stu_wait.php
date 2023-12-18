@@ -13,8 +13,6 @@
     $stu_id=$account["acc"];
     $info=DB::fetch_row("sl8gdm_chrmlist", "stu_cd", $stu_id);
 
-        echo "<h1>遞補申請還未開放</h1>";
-
     if(count($info)===0){
       echo "<div class='inner-content stu_wait'>";
       echo "<h1>你已經申請遞補</h1>";
