@@ -13,15 +13,15 @@
     $stu_id=$account["acc"];
     $info=DB::fetch_row("sl8gdm_chrmlist", "stu_cd", $stu_id);
 
-    if(count($info)==0){
-      echo "<div class='inner-content stu_wait'>";
-      echo "<h1>你還未申請遞補</h1>";
-      echo "<a href='/?inner=stu_choice' class='link' style='font-size:22'>選擇床位</a>";
-      echo  "</div>";
-    }else{
+    if($info){
       echo "<div class='inner-content stu_wait'>";
       echo "<h1>你已經申請遞補</h1>";
       echo "<a href='/?inner=stu_choice' class='link' style='font-size:22'>修改床位</a>";
+      echo  "</div>";
+    }else{
+      echo "<div class='inner-content stu_wait'>";
+      echo "<h1>你還未申請遞補</h1>";
+      echo "<a href='/?inner=stu_choice' class='link' style='font-size:22'>選擇床位</a>";
       echo  "</div>";
     }
 
