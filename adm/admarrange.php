@@ -29,19 +29,11 @@
         }
     }
     
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      
-        foreach ($_POST as $key => $value) {
-            $a_no = substr($key, 4);
-            $cond = ["a_no" => $a_no];
-            $values = ["is_in" => "y"];
-
-            if (DB::update_row("sl8gdm_chrmlist", $cond, $values)) { 
-                ;  
-            } else {
-                die();
-            }
-        }
+    if (isset($_POST["check"])) {    
+        // var_dump($_POST["check"]);  
+        $cond = ["a_no" => $_POST["check"]];  
+        $values = ["is_in" => "y"];
+        DB::update_row("sl8gdm_chrmlist", $cond, $values);  
     }
 ?>
 <div class="inner-content admarrange">
@@ -59,7 +51,7 @@
                 <td><?= convertRoomNumber(substr($row["room_id"], 0, 4)) ?></td>
                 <td>
                     <form action="/?inner=admarrange" method="post">
-                        <button class="action-button buttons" type="submit" name="arr_<?= $row["a_no"] ?>" value="<?=$row["is_in"]?>">確認</button>
+                        <button class="action-button buttons" type="submit" name="check" value="<?=$row["a_no"] ?>">確認</button>
                     </form>
                 </td>
 
