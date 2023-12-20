@@ -6,3 +6,8 @@ requirement_docs
 
 #.env
 .env
+
+# custom fonts
+output/font/unifont/*
+!output/font/unifont/.ttf
+!output/font/unifont/ttfonts.php
