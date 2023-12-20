@@ -53,6 +53,9 @@
             // 使用 usort 進行排序
             usort($rowsCheck, 'customSort');
 
+            $tableSecondCheck = "sl8gdm_dep";
+            $rowsSecondCheck = DB::fetch_table($tableSecondCheck);
+
             if (!empty($rowsCheck)) {
                 foreach ($rowsCheck as $row1) {
                     // 寢別  有寢室才會印出來
@@ -64,17 +67,10 @@
                             echo '<td>' . $row1['room_id'] . '</td>';
                             // 學號
                             echo '<td>' . $row2['staff_cd'] . '</td>';
-                            // 系所  可自行添加
-                            if ($row2['unit_parent'] == "1000")
-                                echo '<td>中國文學研究所</td>';
-                            else if ($row2['unit_parent'] == "2000")
-                                echo '<td>數學研究所</td>';
-                            else if ($row2['unit_parent'] == "3000")
-                                echo '<td>資訊工程研究所</td>';
-                            else if ($row2['unit_parent'] == "4000")
-                                echo '<td>心理研究所</td>';
-                            else if ($row2['unit_parent'] == "5000")
-                                echo '<td>法律研究所</td>';
+                            // 系所
+                            foreach ($rowsSecondCheck as $row3)
+                                if ($row2['unit_parent'] == $row3['unit_parent'])
+                                    echo '<td>' . $row3['unit_name'] . '</td>';
                             // 錄取和放棄與否
                             if ($row2['permit_cd'] == 'std' || $row2['permit_cd'] == 'stq') {
                                 echo '<td>正取</td>';
@@ -125,23 +121,19 @@
             $tableCheck = "sl8gdm_chrmlist";
             $rowsCheck = DB::fetch_table($tableCheck);
 
+            $tableSecondCheck = "sl8gdm_dep";
+            $rowsSecondCheck = DB::fetch_table($tableSecondCheck);
+
             if (!empty($rows)) {
                 foreach ($rows as $row1) {
                     if (strtoupper(substr($row1['permit_cd'], 0, 1)) == 'S') {
                         echo '<tr>';
                         // 學號
                         echo '<td>' . $row1['staff_cd'] . '</td>';
-                        // 系所  可自行添加
-                        if ($row1['unit_parent'] == "1000")
-                            echo '<td>中國文學研究所</td>';
-                        else if ($row1['unit_parent'] == "2000")
-                            echo '<td>數學研究所</td>';
-                        else if ($row1['unit_parent'] == "3000")
-                            echo '<td>資訊工程研究所</td>';
-                        else if ($row1['unit_parent'] == "4000")
-                            echo '<td>心理研究所</td>';
-                        else if ($row1['unit_parent'] == "5000")
-                            echo '<td>法律研究所</td>';
+                        // 系所
+                        foreach ($rowsSecondCheck as $row2)
+                        if ($row1['unit_parent'] == $row2['unit_parent'])
+                            echo '<td>' . $row2['unit_name'] . '</td>';
                         // 寢別
                         $check = 0;
                         foreach ($rowsCheck as $row2) {
@@ -198,21 +190,17 @@
             $tableCheck = "sl8gdm_chrmlist";
             $rowsCheck = DB::fetch_table($tableCheck);
 
+            $tableSecondCheck = "sl8gdm_dep";
+            $rowsSecondCheck = DB::fetch_table($tableSecondCheck);
+
             if (!empty($rows)) {
                 foreach ($rows as $row1) {
                     if (strtoupper(substr($row1['permit_cd'], 0, 1)) == 'S') {
                         echo '<tr>';
-                        // 系所  可自行添加
-                        if ($row1['unit_parent'] == "1000")
-                            echo '<td>中國文學研究所</td>';
-                        else if ($row1['unit_parent'] == "2000")
-                            echo '<td>數學研究所</td>';
-                        else if ($row1['unit_parent'] == "3000")
-                            echo '<td>資訊工程研究所</td>';
-                        else if ($row1['unit_parent'] == "4000")
-                            echo '<td>心理研究所</td>';
-                        else if ($row1['unit_parent'] == "5000")
-                            echo '<td>法律研究所</td>';
+                        // 系所
+                        foreach ($rowsSecondCheck as $row2)
+                        if ($row1['unit_parent'] == $row2['unit_parent'])
+                            echo '<td>' . $row2['unit_name'] . '</td>';
                         // 學號
                         echo '<td>' . $row1['staff_cd'] . '</td>';
                         // 寢別
