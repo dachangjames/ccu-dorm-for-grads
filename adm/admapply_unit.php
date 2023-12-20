@@ -153,7 +153,6 @@
     <div class="buttons">
       <button class="action-button" type="submit">送出</button>
       <button class="action-button" type="reset">重填</button>
-      <button class="action-button" type="button" onclick="window.location.href = '/?inner=admapply'">回上一頁</button>
     </div>
   </form>
 

@@ -19,12 +19,6 @@
       $selectHTML .= '<option value="' . $unit['unit_parent'] . '">' . $unit['unit_name'] . '</option>';
   }
   $selectHTML .= '</select>';
-
-  // 處理表單提交
-  if ($_SERVER['REQUEST_METHOD'] === 'POST')
-  {
-      $unit_parent = $_POST['unit_name'];
-  }
 ?>
 
 <!-- 顯示表單 -->
@@ -39,13 +33,11 @@
     // 如果變數$unit_parent沒有值，中止執行。
     // 原理：先故意讓後面的php內容中止載入一次，當下拉式表單以POST方式傳送資料後，再重新載入一次即可。
     // 這樣就不必再搞一個php檔案了，且這樣的設計也可以避免每次用下拉式清單查詢後又要按回上一頁再選一次清單的狀況。
-    if (!isset($unit_parent))
+    if (!isset($_POST["unit_name"]))
     {
       die();
     }
-    else
-    {
-      //$unit_parent = 1000;
+      $unit_parent = $_POST["unit_name"];
       $dep = DB::fetch_row("sl8gdm_dep", "unit_parent", $unit_parent);
       $unit_name = $dep["unit_name"];
       // 依據表單選擇的單位，取得該單位的承辦人。
@@ -127,7 +119,6 @@
               <button class='action-button' type='button' onclick=\"window.location.href ='/output/output_depapp.php'\">輸出報表</button>
             </form>
             </div>";
-    }
   ?>
 
 
