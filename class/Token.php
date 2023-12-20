@@ -7,8 +7,8 @@ class Token
   /**
    * Token will be expired after 1 day
    */
-  const ACCESS_EXP = 30;
-  const REFRESH_EXP = 45;
+  const ACCESS_EXP = 30 * 60;
+  const REFRESH_EXP = 60 * 60 * 24;
 
   /**
    * ### Authorize the user

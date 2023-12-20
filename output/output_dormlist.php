@@ -1,18 +1,27 @@
 <?php
 include "../include/lib_loadpdf.php";
 
+require_once "../class/Token.php";
+
 require_once "../class/DB.php";
 
-if(!isset($_SESSION["perm"])){
-  echo "<script>alert('請先登入')</script>";
-  header("location: /");
+if(!isset($_COOKIE["jwt"])){
+  echo "<script>
+          alert('請先登入')
+          window.location.href = '/'
+        </script>";
   die();
-  if($_SESSION["perm"] != "adm"){
-    echo "<script>alert('未授權')</script>";
-    header("location: /");
-    die();
-  }
 }
+
+[$payload, $access_token] = Token::verify($_GET["token"], $_COOKIE["jwt"]);
+
+// if (!$payload || $payload["perm"] !== "adm") {
+//   echo "<script>
+//             alert('未授權')
+//             window.location.href = '/'
+//           </script>";
+//   die();
+// }
 
 $pdf->Cell(0, 16, "碩、博士生宿舍住宿名單", 0, 1, "C");
 $pdf->Ln(5);
