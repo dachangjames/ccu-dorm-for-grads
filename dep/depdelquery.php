@@ -10,11 +10,11 @@
     <?php
         $del_table = DB::fetch_table("sl8gdm_stuapply_del");
         function unit2Char($unit) {         
-            $unit_code = substr($unit, -2);
-            $unit_code = trim($unit_code) . "000";   
-            $query_set = DB::fetch_row("sl8gdm_dep","unit_parent", $unit_code);
-
-            return $query_set["unit_name"];
+            $staff_cd = DB::fetch_row("sl8gdm_permit_rec", "staff_cd", $unit);
+            $unit_parent = $staff_cd["unit_parent"];
+            $unit_name = DB::fetch_row("sl8gdm_dep", "unit_parent", $unit_parent);
+            
+            return $unit_name["unit_name"];
         }
     
     ?>
