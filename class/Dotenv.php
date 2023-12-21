@@ -10,7 +10,7 @@
      * Return the coresponding value from the .env file.
      */
     public static function load($key) {
-      $env = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . ".env");
+      $env = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . "\.env");
 
       if (strlen($env[$key]) > 0) {
         return $env[$key];
