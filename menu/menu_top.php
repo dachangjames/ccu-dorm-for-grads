@@ -2,7 +2,7 @@
   <!-- header component -->
   <a href="/">
     <!-- logo -->
-    <img id="top-title" src="pic/logo.jpg">
+    <img id="top-title" src="pic/logo.png">
   </a>
   <!-- links navigation -->
   <input type="checkbox" id="nav-toggle" style="display: none;">
