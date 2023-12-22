@@ -29,4 +29,3 @@ include "transpage.php";
 // footer component
 include "div/div_footer.php";
 ?>
-

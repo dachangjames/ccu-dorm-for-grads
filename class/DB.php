@@ -142,7 +142,7 @@ class DB {
    * Specify the number of rows you disire, defalt to 1000.
    * 
    * @return array|false
-   * Returns the rows you fetched as an array, return false if the row does not exist
+   * Returns the rows you fetched as an array, return false if the row does not exist.
    */
   public static function fetchAll_rows($table, $col, $key, $limit = 1000) {
     self::get_connection();
