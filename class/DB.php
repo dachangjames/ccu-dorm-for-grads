@@ -103,6 +103,30 @@ class DB {
   }
 
   /**
+   * ### Fetch a row from the database by 2 keys.
+   * 
+   * @param string $table
+   * Specify the table to fetch from.
+   * 
+   * @param string $col1, $col2
+   * Specify which two columns to be checked on.
+   * 
+   * @param string|int $key1, $key2
+   * Specify the respective key of the two rows to fetch from.
+   * 
+   * @return array|false
+   * Returns the row you fetched as an array, return false if the row does not exist
+   */
+  public static function advanced_fetch_row($table, $col1, $key1, $col2, $key2) {
+    self::get_connection();
+    $query = "SELECT * FROM $table WHERE $col1 = '$key1' AND $col2 = '$key2'";
+    $stmt = self::$db->query($query);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $row;
+  }
+
+  /**
    * ### Fetch all matching rows from the database by key.
    * 
    * @param string $table
@@ -120,7 +144,7 @@ class DB {
    * @return array|false
    * Returns the rows you fetched as an array, return false if the row does not exist.
    */
-  public static function fetchALl_rows($table, $col, $key, $limit = 1000) {
+  public static function fetchAll_rows($table, $col, $key, $limit = 1000) {
     self::get_connection();
     $query = "SELECT TOP $limit * FROM $table WHERE $col = '$key'";
     $stmt = self::$db->query($query);

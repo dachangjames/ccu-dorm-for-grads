@@ -18,7 +18,10 @@ body {
 
   /* https://coolors.co/1f68ad-2273bf-85b8ea-a8ccf0-bad7f3-f2f5f8 */
 
-  background: linear-gradient(white 30%, var(--background-light));
+  /* background: linear-gradient(white 30%, var(--background-light)); */
+  background-image: url("../pic/background/water.jpg");
+  /* 將背景圖片大小依視窗大小自動調整 */
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: 100%;
@@ -80,10 +83,14 @@ body {
 
 #bottom {
   padding: 4px;
-  background: lightgray;
+  /* 選擇輔色 */
+  color: var(--text-light);
+  background: var(--primary-dark);
   display: grid;
   width: 100%;
   justify-items: center;
+  /* 設定透明度為0.7 */
+  opacity: 0.7;
 }
 
 @media (width < 1500px) {
