@@ -37,11 +37,12 @@
 }
 
 .inner-content {
-  place-self: center;
   display: grid;
   place-items: center;
+  place-content: start;
   gap: 1em;
-  max-width: 100%;
+  width: 100%;
+  justify-content: center;
 }
 
 .inner-img {
@@ -115,6 +116,10 @@ ul.inner-list {
 
   .inner-list {
     align-items: start;
+  }
+
+  .inner-table {
+    font-size: 0.8em;
   }
 }
 

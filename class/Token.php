@@ -7,8 +7,8 @@ class Token
   /**
    * Token will be expired after 1 day
    */
-  const ACCESS_EXP = 30;
-  const REFRESH_EXP = 45;
+  const ACCESS_EXP = 30 * 60;
+  const REFRESH_EXP = 60 * 60 * 24;
 
   /**
    * ### Authorize the user
@@ -81,16 +81,19 @@ class Token
         // wrong password
         return 403;
       } else {
+        $sex = $user["sex"];
         $perm = $user["permit_cd"];
       }
     } else {
       $perm = $payload["perm"];
+      $sex = $payload["sex"];
     }
 
     // additional payload data
     $payload_meta = [
       "iat" => time(),
-      "perm" => $perm
+      "perm" => $perm,
+      "sex" => $sex,
     ];
 
     // encode payload
