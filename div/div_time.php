@@ -1,6 +1,4 @@
 <?php
-$year = "111";
-
 // time with seconds ex. yyyy-mm-dd hh:mm:ss.sss
 $times = DB::fetch_row("sl8gdm_time_limit", "apply_year", $year);
 foreach ($times as $key => &$value) {
@@ -22,7 +20,7 @@ unset($value);
     <p>碩/博士生宿舍相關申請期限</p>
     <p>Application Schedule For The Dormitory</p>
   </div>
-  <div class="inner-content">
+  <div class="inner-content div_time">
     <h3><?php echo $year; ?>學年度 相關申請時程表</h3>
     <table class="inner-table" border="1">
       <tr>
