@@ -10,6 +10,8 @@ function clear_session() {
   session_destroy();
 }
 
+$year = "111";
+
 require "class/DB.php";
 
 // site configs
@@ -27,4 +29,3 @@ include "transpage.php";
 // footer component
 include "div/div_footer.php";
 ?>
-
