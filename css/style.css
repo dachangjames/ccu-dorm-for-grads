@@ -60,6 +60,7 @@ body {
   align-items: center;
   margin-inline: auto 1em;
   flex-wrap: wrap;
+  background: white;
 }
 
 #top-menu > li {
@@ -79,18 +80,21 @@ body {
   justify-content: center;
   position: relative;
   flex: 1;
+  margin: 1em auto;
+  max-width: 100%;
 }
 
 #bottom {
   padding: 4px;
   /* 選擇輔色 */
   color: var(--text-light);
-  background: var(--primary-dark);
+  /* background: var(--primary-dark); */
+  background: #1F68ADB0;
   display: grid;
   width: 100%;
   justify-items: center;
   /* 設定透明度為0.7 */
-  opacity: 0.7;
+  /* opacity: 0.7; */
 }
 
 @media (width < 1500px) {
@@ -103,10 +107,10 @@ body {
     flex-direction: column;
     top: 64px;
     width: 100%;
-    background: white;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 2;
-    box-shadow: none;
-    border-radius: 0;
     transform-origin: top;
     transition: transform 0.25s ease-in-out;
     transform: scaleY(0);
@@ -141,6 +145,12 @@ body {
 
   #top-banner {
     width: 100vw;
+  }
+
+  #main {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   #bottom {

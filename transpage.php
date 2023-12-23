@@ -1,4 +1,4 @@
-<main id="main">
+<main id="main" class="glass">
   <?php
   require_once "class/Token.php";
 
