@@ -9,16 +9,16 @@
     <a href="/?inner=admperm" class="link">權限管理</a>
   </li>
   <li>
-    <a href="/?inner=admapply" class="link">住宿申請X</a>
+    <a href="/?inner=admapply" class="link">住宿申請</a>
   </li>
   <li>
-    <a href="/?inner=admappwait" class="link">遞補作業X</a>
+    <a href="/?inner=admappwait" class="link">遞補作業</a>
   </li>
   <li>
-    <a href="/?inner=admarrange" class="link">排寢作業X</a>
+    <a href="/?inner=admarrange" class="link">排寢作業</a>
   </li>
   <li>
-    <a href="/?inner=admqry" class="link">查詢功能X</a>
+    <a href="/?inner=admqry" class="link">查詢功能</a>
   </li>
   <li>
     <a href="/?inner=admdelchk" class="link">放棄確認</a>

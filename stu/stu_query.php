@@ -12,8 +12,7 @@ $apply_info = array(
 );
 if ($info == false) {
 	$apply_status = 1;
-} 
-else {
+} else {
 	$apply_status = 2;
 	$status_info = $info["room_id"];
 }
@@ -30,17 +29,17 @@ else {
 	<div class="inner-content stu_query">
 		<table class="inner-table" border="1">
 			<tr>
-                <td>系所</td>
-                <td><?php echo $dep_info["unit_parent"]." ".$dep_info["unit_name"]; ?></td>
-            </tr>
-            <tr>
-                <td>學號</td>
-                <td><?php echo $stu_id; ?></td>
-            </tr>
-            <tr>
-                <td>查詢結果顯示</td>
-                <td><?php echo $apply_info[$apply_status]." ".$status_info; ?></td>
-            </tr>
+				<td>系所</td>
+				<td><?php echo $dep_info["unit_parent"] . " " . $dep_info["unit_name"]; ?></td>
+			</tr>
+			<tr>
+				<td>學號</td>
+				<td><?php echo $stu_id; ?></td>
+			</tr>
+			<tr>
+				<td>查詢結果顯示</td>
+				<td><?php echo $apply_info[$apply_status] . " " . $status_info; ?></td>
+			</tr>
 		</table>
 	</div>
 
