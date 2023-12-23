@@ -113,7 +113,7 @@
 
     echo "<form action='/?inner=admapply_unit' method='POST' class='buttons'>
               <button class='action-button' type='submit' name='op' value='add'>新增名單</button>
-              <button class='action-button' type='button' onclick=\"window.location.href ='/output/output_depapp.php'\">輸出報表</button>
+              <button class='action-button' type='button' onclick=\"window.location.href ='/output/output_dormlist.php?token=" . $_SESSION["token"] ."'\">輸出報表</button>
             </form>
             </div>";
     ?>

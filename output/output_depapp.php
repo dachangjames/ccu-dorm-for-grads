@@ -13,11 +13,21 @@ if (!isset($_COOKIE["jwt"])) {
   die();
 }
 
+[$payload, $access_token] = Token::verify($_GET["token"], $_COOKIE["jwt"]);
+
+if (!$payload || $payload["perm"] !== "dep") {
+  echo "<script>
+            alert('未授權')
+            window.location.href = '/'
+          </script>";
+  die();
+}
+
 $user = DB::fetch_row("sl8gdm_permit_rec", "staff_cd", $payload["acc"]);
 $dep = DB::fetch_row("sl8gdm_dep", "unit_parent", $user["unit_parent"]);
 $data = DB::fetch_table("sl8gdm_dep_stuapply");
 
-$pdf->Cell(0, 16, "碩、博士生宿舍申請名單 (" . $dep["unit_name"] . ")", 0, 1, "C");
+$pdf->Cell(0, 16, "碩、博士生宿舍申請名單 -- " . trim($dep["unit_name"]), 0, 1, "C");
 $pdf->Ln(5);
 
 $pdf->SetFont("NotoSans", "", 15);

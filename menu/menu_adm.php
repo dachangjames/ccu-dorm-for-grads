@@ -24,7 +24,7 @@
     <a href="/?inner=admdelchk" class="link">放棄確認</a>
   </li>
   <li>
-    <a href="/output/output_dormlist.php" target="_blank" class="link">住宿名冊</a>
+    <a href=<?php echo "/output/output_dormlist.php?token=" .  $_SESSION["token"]; ?> target="_blank" class="link">住宿名冊</a>
   </li>
   <li>
     <a href="/" class="link">回首頁</a>

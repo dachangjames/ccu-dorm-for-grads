@@ -5,7 +5,7 @@ require_once "../class/Token.php";
 
 require_once "../class/DB.php";
 
-if(!isset($_COOKIE["jwt"])){
+if (!isset($_COOKIE["jwt"])) {
   echo "<script>
           alert('請先登入')
           window.location.href = '/'
@@ -15,13 +15,13 @@ if(!isset($_COOKIE["jwt"])){
 
 [$payload, $access_token] = Token::verify($_GET["token"], $_COOKIE["jwt"]);
 
-// if (!$payload || $payload["perm"] !== "adm") {
-//   echo "<script>
-//             alert('未授權')
-//             window.location.href = '/'
-//           </script>";
-//   die();
-// }
+if (!$payload || $payload["perm"] !== "adm") {
+  echo "<script>
+            alert('未授權')
+            window.location.href = '/'
+          </script>";
+  die();
+}
 
 $pdf->Cell(0, 16, "碩、博士生宿舍住宿名單", 0, 1, "C");
 $pdf->Ln(5);
