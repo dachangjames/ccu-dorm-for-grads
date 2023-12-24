@@ -131,7 +131,7 @@ if (isset($_POST["perm"])) {
     </form>
 
     <script>
-      var cnt = <?php echo $cnt; ?>;
+      // var cnt = <?php echo $cnt; ?>;
 
       function addRow() { // 往權限table的下方，新增一列
         var table = document.getElementById("permTable");
