@@ -20,6 +20,8 @@ include "div/div_head.php";
 // connect to db if not connected
 include "include/lib_conn.php";
 
+echo "<img id='background' src='pic/water.jpg'>";
+
 // header component
 include "menu/menu_top.php";
 
@@ -28,4 +30,6 @@ include "transpage.php";
 
 // footer component
 include "div/div_footer.php";
+
+echo "<script src='js/lazybg.js'></script>";
 ?>

@@ -19,8 +19,7 @@ body {
   /* https://coolors.co/1f68ad-2273bf-85b8ea-a8ccf0-bad7f3-f2f5f8 */
 
   /* background: linear-gradient(white 30%, var(--background-light)); */
-  background-image: url("../pic/background/water.jpg");
-  /* 將背景圖片大小依視窗大小自動調整 */
+  background-image: url("../pic/water-blur.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -28,13 +27,34 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+body.loaded > #background {
+  opacity: 1;
+}
+
+#background {
+  position: fixed;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -999;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
 }
 
 #top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
+}
+
+#top-nav {
+  display: flex;
+  background: white;
+  width: 100%;
+  box-shadow: 0 1px 4px 2px rgba(0, 0, 0, 0.15);
 }
 
 #top-title {
@@ -98,7 +118,7 @@ body {
 }
 
 @media (width < 1500px) {
-  #top > .bx-menu {
+  #top .bx-menu {
     display: flex;
   }
 
